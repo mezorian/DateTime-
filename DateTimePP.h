@@ -7,14 +7,22 @@
 class DateTimePP{
     public:
         DateTimePP();
-        int nseconds() const;
-        int seconds()  const;
-        int minutes()  const;
-        int hours()    const;
-        int days()     const;
-        int months()   const;
-        int years()    const;
-        double timezone() const;
+        int nseconds();
+        int nseconds(int newValue_);
+        int seconds();
+        int seconds(int newValue_);
+        int minutes();
+        int minutes(int newValue_)  ;
+        int hours();
+        int hours(int newValue_)    ;
+        int days();
+        int days(int newValue_)     ;
+        int months();
+        int months(int newValue_)   ;
+        int years();
+        int years(int newValue_)    ;
+        double timezone();
+        double timezone(double newValue_) ;
     private:
         int m_nseconds = 0;
         int m_seconds  = 0;
