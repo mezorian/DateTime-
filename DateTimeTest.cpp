@@ -6,14 +6,14 @@
 TEST_CASE("Test if DatetimePP points to 01.01.00 0:0:0") {
     DateTimePP dt;
     REQUIRE(dt.nseconds()  == 0);
-    REQUIRE(dt.seconds()  == 0);
-    REQUIRE(dt.seconds()  == 0);
-    REQUIRE(dt.minutes()  == 0);
-    REQUIRE(dt.hours()    == 0);
-    REQUIRE(dt.days()     == 1);
-    REQUIRE(dt.months()   == 1);
-    REQUIRE(dt.years()    == 0);
-    REQUIRE(dt.timezone() == 0.0);
+    REQUIRE(dt.seconds()   == 0);
+    REQUIRE(dt.seconds()   == 0);
+    REQUIRE(dt.minutes()   == 0);
+    REQUIRE(dt.hours()     == 0);
+    REQUIRE(dt.days()      == 1);
+    REQUIRE(dt.months()    == 1);
+    REQUIRE(dt.years()     == 0);
+    REQUIRE(dt.timezone()  == 0.0);
 }
 
 TEST_CASE("Test if get returns the previously set value") {
@@ -22,6 +22,7 @@ TEST_CASE("Test if get returns the previously set value") {
     double timezone;
 
     SECTION("test if get and set works for normal valid values") {
+        nseconds = 200020;
         seconds = 12;
         minutes = 23;
         hours = 4;
@@ -30,12 +31,13 @@ TEST_CASE("Test if get returns the previously set value") {
         years = 2013;
         timezone = 2.0;
 
-        REQUIRE(dt.seconds(seconds)  == seconds);
-        REQUIRE(dt.minutes(minutes)  == minutes);
-        REQUIRE(dt.hours(hours)    == hours);
-        REQUIRE(dt.days(days)     == days);
-        REQUIRE(dt.months(months)   == months);
-        REQUIRE(dt.years(years)    == years);
+        REQUIRE(dt.nseconds(nseconds) == nseconds);
+        REQUIRE(dt.seconds(seconds)   == seconds);
+        REQUIRE(dt.minutes(minutes)   == minutes);
+        REQUIRE(dt.hours(hours)       == hours);
+        REQUIRE(dt.days(days)         == days);
+        REQUIRE(dt.months(months)     == months);
+        REQUIRE(dt.years(years)       == years);
         REQUIRE(dt.timezone(timezone) == timezone);
     }
 

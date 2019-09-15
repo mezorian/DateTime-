@@ -20,7 +20,7 @@ int DateTimePP::nseconds() {
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::nseconds(int newValue_) {
-    m_nseconds = (newValue_ % 1000000000) - 1;
+    m_nseconds = (newValue_ % 1000000000);
     return nseconds();
 }
 
@@ -40,7 +40,7 @@ int DateTimePP::seconds() {
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::seconds(int newValue_) {
-    m_seconds = (newValue_ % 60) - 1;
+    m_seconds = (newValue_ % 60);
     return seconds();
 }
 
@@ -54,13 +54,13 @@ int DateTimePP::minutes() {
 
 /**
  * @brief DateTimePP::minutes
- * @param newValue_ new seconds value between 0 - 59
+ * @param newValue_ new minutes value between 0 - 59
  * @return returns the minutes value between 0 - 59
  *
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::minutes(int newValue_) {
-    m_minutes = (newValue_ % 60) - 1;
+    m_minutes = (newValue_ % 60);
     return minutes();
 }
 
@@ -74,13 +74,13 @@ int DateTimePP::hours() {
 
 /**
  * @brief DateTimePP::hours
- * @param newValue_ new seconds value between 0 - 23
+ * @param newValue_ new hours value between 0 - 23
  * @return returns the hours value between 0 - 23
  *
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::hours(int newValue_) {
-    m_hours = (newValue_ % 24) - 1;
+    m_hours = (newValue_ % 24);
     return hours();
 }
 
@@ -94,7 +94,7 @@ int DateTimePP::days() {
 
 /**
  * @brief DateTimePP::days
- * @param newValue_ new seconds value between 0 - 23
+ * @param newValue_ new days value between 1 - 31
  * @return returns the days value between 1 - 31
  *
  * This function automatically adjust the given parameter to the possible values by using modulo
@@ -114,7 +114,7 @@ int DateTimePP::months() {
 
 /**
  * @brief DateTimePP::months
- * @param newValue_ new seconds value between 1 - 12
+ * @param newValue_ new months value between 1 - 12
  * @return returns the months value between 1 - 12
  *
  * This function automatically adjust the given parameter to the possible values by using modulo
@@ -147,7 +147,17 @@ int DateTimePP::years(int newValue_) {
  * @brief DateTimePP::timezone
  * @return returns the difference in hours to the timezone UTC
  */
-double DateTimePP::timezone(double newValue_) {
+double DateTimePP::timezone() {
     return m_timezone;
+}
+
+/**
+ * @brief DateTimePP::timezone
+ * @param newValue_ new value for difference in hours to the timezone UTC
+ * @return returns the difference in hours to the timezone UTC
+ */
+double DateTimePP::timezone(double newValue_) {
+    m_timezone = newValue_;
+    return timezone();
 }
 
