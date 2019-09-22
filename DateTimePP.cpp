@@ -1,14 +1,17 @@
 #include "DateTimePP.h"
+#include <chrono>
 
 DateTimePP::DateTimePP() {
 
 }
 
+/* --- getter / setter --- */
+
 /**
  * @brief DateTimePP::nseconds
  * @return returns the nanoseconds value between 0 - (1e+9 - 1)
  */
-int DateTimePP::nseconds() {
+int DateTimePP::nseconds() const {
     return m_nseconds;
 }
 
@@ -20,7 +23,7 @@ int DateTimePP::nseconds() {
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::nseconds(int newValue_) {
-    m_nseconds = (newValue_ % 1000000000);
+    m_nseconds = newValue_;
     return nseconds();
 }
 
@@ -28,7 +31,7 @@ int DateTimePP::nseconds(int newValue_) {
  * @brief DateTimePP::seconds
  * @return returns the seconds value between 0 - 59
  */
-int DateTimePP::seconds() {
+int DateTimePP::seconds() const {
     return m_seconds;
 }
 
@@ -40,7 +43,7 @@ int DateTimePP::seconds() {
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::seconds(int newValue_) {
-    m_seconds = (newValue_ % 60);
+    m_seconds = newValue_;
     return seconds();
 }
 
@@ -48,7 +51,7 @@ int DateTimePP::seconds(int newValue_) {
  * @brief DateTimePP::minutes
  * @return returns the minutes value between 0 - 59
  */
-int DateTimePP::minutes() {
+int DateTimePP::minutes() const {
     return m_minutes;
 }
 
@@ -60,7 +63,7 @@ int DateTimePP::minutes() {
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::minutes(int newValue_) {
-    m_minutes = (newValue_ % 60);
+    m_minutes = newValue_;
     return minutes();
 }
 
@@ -68,7 +71,7 @@ int DateTimePP::minutes(int newValue_) {
  * @brief DateTimePP::hours
  * @return returns the hours value between 0 - 23
  */
-int DateTimePP::hours() {
+int DateTimePP::hours() const {
     return m_hours;
 }
 
@@ -80,7 +83,7 @@ int DateTimePP::hours() {
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::hours(int newValue_) {
-    m_hours = (newValue_ % 24);
+    m_hours = newValue_;
     return hours();
 }
 
@@ -88,7 +91,7 @@ int DateTimePP::hours(int newValue_) {
  * @brief DateTimePP::days
  * @return returns the days value between 1 - 31
  */
-int DateTimePP::days() {
+int DateTimePP::days() const {
     return m_days;
 }
 
@@ -100,7 +103,7 @@ int DateTimePP::days() {
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::days(int newValue_) {
-    m_days = (newValue_ % 31);
+    m_days = newValue_;
     return days();
 }
 
@@ -108,7 +111,7 @@ int DateTimePP::days(int newValue_) {
  * @brief DateTimePP::months
  * @return returns the months value between 1 - 12
  */
-int DateTimePP::months() {
+int DateTimePP::months() const {
     return m_months;
 }
 
@@ -120,7 +123,7 @@ int DateTimePP::months() {
  * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::months(int newValue_) {
-    m_months = (newValue_ % 12);
+    m_months = newValue_;
     return months();
 }
 
@@ -128,7 +131,7 @@ int DateTimePP::months(int newValue_) {
  * @brief DateTimePP::years
  * @return returns the years value between INT_MIN and INT_MAX
  */
-int DateTimePP::years() {
+int DateTimePP::years() const {
     return m_years;
 }
 
@@ -147,7 +150,7 @@ int DateTimePP::years(int newValue_) {
  * @brief DateTimePP::timezone
  * @return returns the difference in hours to the timezone UTC
  */
-double DateTimePP::timezone() {
+double DateTimePP::timezone() const {
     return m_timezone;
 }
 
@@ -159,5 +162,60 @@ double DateTimePP::timezone() {
 double DateTimePP::timezone(double newValue_) {
     m_timezone = newValue_;
     return timezone();
+}
+
+/* --- get current time --- */
+
+/**
+ * @brief DateTimePP::now
+ * @param UTC if true the current UTC time is used, otherwise the current local time is used
+ *
+ * now() sets the values of your DateTimePP object to the current time.
+ * For this, the current local time is used.
+ * If you set the parameter UTC to true, now() is not using the current local time but
+ * the UTC time instead. The parameter is set to false by default.
+ */
+void DateTimePP::now(bool UTC_) {
+    // create time variable
+    time_t  secondsSince1970;
+    struct tm *ctime;
+    time ( &secondsSince1970 );
+
+    // if UTC_ set object to gmt time, otherwise use local time
+    if (UTC_) {
+        ctime = gmtime ( &secondsSince1970 );
+    } else {
+        ctime = localtime ( &secondsSince1970 );
+    }
+
+    nseconds(0); // not supported yet
+    seconds(ctime->tm_sec);
+    minutes(ctime->tm_min);
+    hours(ctime->tm_hour);
+    days(ctime->tm_mday);
+    months(ctime->tm_mon);
+    years(ctime->tm_year);
+    timezone(ctime->tm_gmtoff);
+}
+
+/* --- operators --- */
+
+/**
+ * @brief DateTimePP::operator ==
+ * @param other_ other DateTimePP object to compare with
+ * @return returns true if all member variables of both DateTimePP objects are identical
+ */
+bool DateTimePP::operator==(const DateTimePP &other_) const {
+    // check if attributes are identical
+    bool isIdentical = ( ( (*this).nseconds() == other_.nseconds() ) &&
+                         ( (*this).seconds()  == other_.seconds()  ) &&
+                         ( (*this).minutes()  == other_.minutes()  ) &&
+                         ( (*this).hours()    == other_.hours()    ) &&
+                         ( (*this).days()     == other_.days()     ) &&
+                         ( (*this).years()    == other_.years()    ) &&
+                         ( (*this).timezone() == other_.timezone() ) );
+
+    // return result of comparison
+    return isIdentical;
 }
 

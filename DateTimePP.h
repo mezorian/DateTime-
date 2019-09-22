@@ -7,22 +7,34 @@
 class DateTimePP{
     public:
         DateTimePP();
-        int nseconds();
+
+        /* --- getter / setter --- */
+        int nseconds() const;
         int nseconds(int newValue_);
-        int seconds();
+        int seconds() const;
         int seconds(int newValue_);
-        int minutes();
+        int minutes() const;
         int minutes(int newValue_)  ;
-        int hours();
+        int hours() const;
         int hours(int newValue_)    ;
-        int days();
+        int days() const;
         int days(int newValue_)     ;
-        int months();
+        int months() const;
         int months(int newValue_)   ;
-        int years();
+        int years() const;
         int years(int newValue_)    ;
-        double timezone();
+        double timezone() const;
         double timezone(double newValue_) ;
+
+        /* --- get current time --- */
+        void now(bool UTC_ = false);
+
+        /* --- operators --- */
+        bool operator==(const DateTimePP& other_) const;
+        //VectorData& operator= (const VectorData& other_);
+        //bool        operator==(const VectorData& other_) const;
+        //bool        operator!=(const VectorData& other_) const;
+
     private:
         int m_nseconds = 0;
         int m_seconds  = 0;
