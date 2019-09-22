@@ -219,3 +219,13 @@ bool DateTimePP::operator==(const DateTimePP &other_) const {
     return isIdentical;
 }
 
+/**
+ * @brief DateTimePP::operator !=
+ * @param other_ other DateTimePP object to compare with
+ * @return returns true if at least one of the member variables of the both DateTime objects are not identical
+ */
+bool DateTimePP::operator!=(const DateTimePP &other_) const {
+    // check if identical and return the invers
+    return (!((*this == other_)));
+}
+

@@ -31,6 +31,7 @@ class DateTimePP{
 
         /* --- operators --- */
         bool operator==(const DateTimePP& other_) const;
+        bool operator!=(const DateTimePP& other_) const;
         //VectorData& operator= (const VectorData& other_);
         //bool        operator==(const VectorData& other_) const;
         //bool        operator!=(const VectorData& other_) const;

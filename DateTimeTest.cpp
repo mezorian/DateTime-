@@ -99,7 +99,7 @@ TEST_CASE("Test if now(true) stores the current UTC date time") {
     REQUIRE(dt.timezone() == ctime->tm_gmtoff);
 }
 
-TEST_CASE("Test if equal operator only returns true if all member variables of a DateTimePP object are equal") {
+TEST_CASE("Test if equal operator returns true and unqual operator returns false if all member variables of a DateTimePP object are equal") {
     DateTimePP dt1, dt2;
 
     int nseconds=0, seconds=0, minutes=0, hours=0, days=0, months=0, years=0;
@@ -148,4 +148,5 @@ TEST_CASE("Test if equal operator only returns true if all member variables of a
     REQUIRE(dt1.years(years)       == dt2.years(years));
     REQUIRE(dt1.timezone(timezone) == dt2.timezone(timezone));
     REQUIRE(dt1 == dt2);
+    REQUIRE_FALSE(dt1 != dt2);
 }
