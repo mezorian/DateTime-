@@ -212,6 +212,7 @@ bool DateTimePP::operator==(const DateTimePP &other_) const {
                          ( (*this).minutes()  == other_.minutes()  ) &&
                          ( (*this).hours()    == other_.hours()    ) &&
                          ( (*this).days()     == other_.days()     ) &&
+                         ( (*this).months()   == other_.months()   ) &&
                          ( (*this).years()    == other_.years()    ) &&
                          ( (*this).timezone() == other_.timezone() ) );
 
