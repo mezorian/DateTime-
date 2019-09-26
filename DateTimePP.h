@@ -29,6 +29,9 @@ class DateTimePP{
         /* --- get current time --- */
         void now(bool UTC_ = false);
 
+        /* --- get time --- */
+        long unixTime() const;
+
         /* --- operators --- */
         bool operator==(const DateTimePP& other_) const;
         bool operator!=(const DateTimePP& other_) const;

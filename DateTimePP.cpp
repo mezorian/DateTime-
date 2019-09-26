@@ -198,6 +198,15 @@ void DateTimePP::now(bool UTC_) {
     timezone(ctime->tm_gmtoff);
 }
 
+/**
+ * @brief DateTimePP::unixTime
+ * @return returns the date time defined in this object as unixTime / seconds since 1. January 1970 1:00:00 AM
+ */
+long DateTimePP::unixTime() const {
+    long result = 0;
+    return result;
+}
+
 /* --- operators --- */
 
 /**
