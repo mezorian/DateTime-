@@ -10,6 +10,8 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [ ] get current time as unix time string
 - [ ] output datetime in different formats to string
 - [ ] add or subtract DateTimePP objects
+- [ ] throw exceptions if unixTime is not used properly
+- [ ] throw exceptions if values are used that not work in the gregorian calender
 - [ ] move DateTimeObjects into new time-zone
 - [ ] ensure winter time works
 - [ ] ensure leap year works

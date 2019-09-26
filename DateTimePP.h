@@ -29,7 +29,7 @@ class DateTimePP{
         /* --- get current time --- */
         void now(bool UTC_ = false);
 
-        /* --- get time --- */
+        /* --- get time in different formats --- */
         long unixTime() const;
 
         /* --- operators --- */
