@@ -732,6 +732,115 @@ TEST_CASE("test if daysOfMonth returns the 29 days for february only for leap ye
     REQUIRE(dt.daysOfMonth(month, year) == days);
 }
 
+TEST_CASE("test if daysOfMonth throws an exception for years < 1582") {
+    DateTimePP dt;
+    int month=1, year=0;
+    bool willThrowException=false;
+
+    SECTION("test with years negative years") {
+        month = 1;
+        year = -1;
+        willThrowException = true;
+    }
+
+    SECTION("test with years negative years") {
+        month = 2;
+        year = -14;
+        willThrowException = true;
+    }
+
+    SECTION("test with years negative years") {
+        month = 3;
+        year = -2000;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        month = 4;
+        year = 0;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        month = 5;
+        year = 3;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        month = 6;
+        year = 400;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        month = 7;
+        year = 1000;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        month = 8;
+        year = 1581;
+        willThrowException = true;
+    }
+
+    SECTION("test year 1582") {
+        month = 9;
+        year = 1582;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        month = 10;
+        year = 1583;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        month = 11;
+        year = 1590;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        month = 12;
+        year = 1600;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        month = 1;
+        year = 1811;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        month = 2;
+        year = 2000;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        month = 3;
+        year = 2583;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        month = 4;
+        year = 5583;
+        willThrowException = false;
+    }
+
+    if (willThrowException) {
+        REQUIRE_THROWS(dt.daysOfMonth(month,year));
+    } else {
+        REQUIRE_NOTHROW(dt.daysOfMonth(month,year));
+    }
+
+}
+
 TEST_CASE("test if leapYear() returns true for leap years and false for normal years") {
     DateTimePP dt;
     int year=0;
@@ -995,6 +1104,5 @@ TEST_CASE("test if leapYear throws an exception for years < 1582") {
     } else {
         REQUIRE_NOTHROW(dt.leapYear(year));
     }
-
 
 }
