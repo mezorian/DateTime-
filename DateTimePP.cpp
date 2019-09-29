@@ -289,7 +289,7 @@ bool DateTimePP::leapYear(int year_) const {
             yearIsLeapYear = true;
         }
     } else {
-        // before gregorian calender
+        throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );
     }
 
     return yearIsLeapYear;

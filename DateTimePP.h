@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <time.h>
+#include <stdexcept>
 
 class DateTimePP{
     public:

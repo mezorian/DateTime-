@@ -910,3 +910,97 @@ TEST_CASE("test if leapYear() returns true for leap years and false for normal y
 
     REQUIRE(dt.leapYear(year) == yearIsLeapYear);
 }
+
+TEST_CASE("test if leapYear throws an exception for years < 1582") {
+    DateTimePP dt;
+    int year=0;
+    bool willThrowException=false;
+
+    SECTION("test with years negative years") {
+        year = -1;
+        willThrowException = true;
+    }
+
+    SECTION("test with years negative years") {
+        year = -14;
+        willThrowException = true;
+    }
+
+    SECTION("test with years negative years") {
+        year = -2000;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 0;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 3;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 400;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 1000;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 1581;
+        willThrowException = true;
+    }
+
+    SECTION("test year 1582") {
+        year = 1582;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1583;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1590;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1600;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1811;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 2000;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 2583;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 5583;
+        willThrowException = false;
+    }
+
+    if (willThrowException) {
+        REQUIRE_THROWS(dt.leapYear(year));
+    } else {
+        REQUIRE_NOTHROW(dt.leapYear(year));
+    }
+
+
+}
