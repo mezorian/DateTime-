@@ -366,7 +366,7 @@ TEST_CASE("Test if unix-time conversion is working") {
     REQUIRE(dt.unixTime() == unixTime);
 } */
 
-/*
+
 TEST_CASE("test if daysOfMonth returns the correct number of days for normal years") {
     DateTimePP dt;
     int month, year, days;
@@ -446,7 +446,7 @@ TEST_CASE("test if daysOfMonth returns the correct number of days for normal yea
     REQUIRE(dt.daysOfMonth(month, year) == days);
 }
 
-/*
+
 TEST_CASE("test if daysOfMonth returns the correct number of days for leap years") {
     DateTimePP dt;
     int month, year, days;
@@ -524,9 +524,9 @@ TEST_CASE("test if daysOfMonth returns the correct number of days for leap years
     }
 
     REQUIRE(dt.daysOfMonth(month, year) == days);
-} */
+}
 
-/*
+
 TEST_CASE("test if daysOfMonth returns the 29 days for february only for leap years") {
     DateTimePP dt;
     int month, year, days;
@@ -647,37 +647,31 @@ TEST_CASE("test if daysOfMonth returns the 29 days for february only for leap ye
 
     SECTION("test if daysOfMonth returns 28 for February for leap years if year is divisible by 100 but not divisible by 400") {
         month = 2;
-        year = 0;  // TODO !!!!!!
-        days = 29;
-    }
-
-    SECTION("test if daysOfMonth returns 28 for February for leap years if year is divisible by 100 but not divisible by 400") {
-        month = 2;
-        year = 100;
+        year = 2100;
         days = 28;
     }
 
     SECTION("test if daysOfMonth returns 28 for February for leap years if year is divisible by 100 but not divisible by 400") {
         month = 2;
-        year = 200;
+        year = 2200;
         days = 28;
     }
 
     SECTION("test if daysOfMonth returns 28 for February for leap years if year is divisible by 100 but not divisible by 400") {
         month = 2;
-        year = 300;
+        year = 2300;
         days = 28;
     }
 
     SECTION("test if daysOfMonth returns 29 for February for leap years if year is divisible by 100 but also divisible by 400") {
         month = 2;
-        year = 400;
+        year = 2400;
         days = 29;
     }
 
     SECTION("test if daysOfMonth returns 28 for February for leap years if year is divisible by 100 but not divisible by 400") {
         month = 2;
-        year = 500;
+        year = 2500;
         days = 28;
     }
 
@@ -736,7 +730,7 @@ TEST_CASE("test if daysOfMonth returns the 29 days for february only for leap ye
     }
 
     REQUIRE(dt.daysOfMonth(month, year) == days);
-}*/
+}
 
 TEST_CASE("test if leapYear() returns true for leap years and false for normal years") {
     DateTimePP dt;

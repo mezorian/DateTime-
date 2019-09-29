@@ -232,25 +232,29 @@ long DateTimePP::unixTime() const {
 int DateTimePP::daysOfMonth(int month_, int year_) const {
     int numberOfDaysOfMonth = 0;
 
-    switch (month_) {
-        case 1  : numberOfDaysOfMonth = 31; break;
-        case 2  : if ( leapYear(year_)) {
-                    numberOfDaysOfMonth = 29;
-                  } else {
-                    numberOfDaysOfMonth = 28;
-                  }; break;
-        case 3  : numberOfDaysOfMonth = 31; break;
-        case 4  : numberOfDaysOfMonth = 30; break;
-        case 5  : numberOfDaysOfMonth = 31; break;
-        case 6  : numberOfDaysOfMonth = 30; break;
-        case 7  : numberOfDaysOfMonth = 31; break;
-        case 8  : numberOfDaysOfMonth = 31; break;
-        case 9  : numberOfDaysOfMonth = 30; break;
-        case 10 : numberOfDaysOfMonth = 31; break;
-        case 11 : numberOfDaysOfMonth = 30; break;
-        case 12 : numberOfDaysOfMonth = 31; break;
-    }
+    if (year_ >= 1582) {
 
+        switch (month_) {
+            case 1  : numberOfDaysOfMonth = 31; break;
+            case 2  : if ( leapYear(year_)) {
+                        numberOfDaysOfMonth = 29;
+                      } else {
+                        numberOfDaysOfMonth = 28;
+                      }; break;
+            case 3  : numberOfDaysOfMonth = 31; break;
+            case 4  : numberOfDaysOfMonth = 30; break;
+            case 5  : numberOfDaysOfMonth = 31; break;
+            case 6  : numberOfDaysOfMonth = 30; break;
+            case 7  : numberOfDaysOfMonth = 31; break;
+            case 8  : numberOfDaysOfMonth = 31; break;
+            case 9  : numberOfDaysOfMonth = 30; break;
+            case 10 : numberOfDaysOfMonth = 31; break;
+            case 11 : numberOfDaysOfMonth = 30; break;
+            case 12 : numberOfDaysOfMonth = 31; break;
+        }
+    } else {
+        throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );
+    }
     return  numberOfDaysOfMonth;
 }
 
