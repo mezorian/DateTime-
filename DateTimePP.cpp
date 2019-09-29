@@ -254,6 +254,27 @@ int DateTimePP::daysOfMonth(int month_, int year_) const {
     return  numberOfDaysOfMonth;
 }
 
+/**
+ * @brief DateTimePP::leapYear
+ * @param year_ year (>= 1582) of which you want to know whether it is a leap year or not.
+ * @return returns true if year_ is a leap year, otherwise false
+ *
+ * A leap year is a calendar year containing an additional day added to keep the calendar year
+ * synchronized with the astronomical or seasonal year.
+ *
+ * This function uses the the Gregorian calendar, each leap year has 366 days instead of 365,
+ * by extending February to 29 days rather than the common 28.
+ * These extra days occur in years which are multiples of four
+ * (with the exception of years that can be divided by 100 and which can not be divided by 400).
+ *
+ * Source Wikipedia:
+ * https://en.wikipedia.org/wiki/Leap_year
+ *
+ * Please note that this function can only be used for years >= 1582.
+ * This is because the Gregorian calender is used since this year.
+ * For years before this, other leap-year rules have to be used.
+ *
+ */
 bool DateTimePP::leapYear(int year_) const {
     bool yearIsLeapYear = false;
 
