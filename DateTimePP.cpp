@@ -220,11 +220,58 @@ long DateTimePP::unixTime() const {
     // add days
     result += daysDiff * 24 * 60 * 60;
     // add months
-    result += numberOfDaysSinceMonth(monthsDiff) * 24 * 60 * 60;
+    //result += numberOfDaysSinceMonth(monthsDiff) * 24 * 60 * 60; // TODO
     // add years
-    result += numberOfDaysFrom1970ToYear(yearsDiff) * 24 * 60 * 60;
+    //result += numberOfDaysFrom1970ToYear(yearsDiff) * 24 * 60 * 60; // TODO
 
     return result;
+}
+
+/* --- get information about dates --- */
+
+int DateTimePP::daysOfMonth(int month_, int year_) const {
+    int numberOfDaysOfMonth = 0;
+
+    switch (month_) {
+        case 1  : numberOfDaysOfMonth = 31; break;
+        case 2  : if ( leapYear(year_)) {
+                    numberOfDaysOfMonth = 29;
+                  } else {
+                    numberOfDaysOfMonth = 28;
+                  }; break;
+        case 3  : numberOfDaysOfMonth = 31; break;
+        case 4  : numberOfDaysOfMonth = 30; break;
+        case 5  : numberOfDaysOfMonth = 31; break;
+        case 6  : numberOfDaysOfMonth = 30; break;
+        case 7  : numberOfDaysOfMonth = 31; break;
+        case 8  : numberOfDaysOfMonth = 31; break;
+        case 9  : numberOfDaysOfMonth = 30; break;
+        case 10 : numberOfDaysOfMonth = 31; break;
+        case 11 : numberOfDaysOfMonth = 30; break;
+        case 12 : numberOfDaysOfMonth = 31; break;
+    }
+
+    return  numberOfDaysOfMonth;
+}
+
+bool DateTimePP::leapYear(int year_) const {
+    bool yearIsLeapYear = false;
+
+    if (year_ >= 1582) {
+        if (year_ % 4 != 0 ) {
+            yearIsLeapYear = false;
+        } else if (year_ % 100 != 0) {
+            yearIsLeapYear = true;
+        } else if (year_ % 400 != 0) {
+            yearIsLeapYear = false;
+        } else {
+            yearIsLeapYear = true;
+        }
+    } else {
+        // before gregorian calender
+    }
+
+    return yearIsLeapYear;
 }
 
 /* --- operators --- */

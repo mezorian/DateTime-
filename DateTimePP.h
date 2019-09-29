@@ -32,6 +32,10 @@ class DateTimePP{
         /* --- get time in different formats --- */
         long unixTime() const;
 
+        /* --- get information about dates --- */
+        int daysOfMonth(int month_, int year_) const;
+        bool leapYear(int year_) const;
+
         /* --- operators --- */
         bool operator==(const DateTimePP& other_) const;
         bool operator!=(const DateTimePP& other_) const;
