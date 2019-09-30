@@ -1,6 +1,8 @@
 # DateTime++
 DateTime++ : A easy to use c++ library for date-time calculations
 
+[![Build Status](https://travis-ci.org/mezorian/DateTimePP.svg?branch=master)](https://travis-ci.org/mezorian/DateTimePP)
+
 # Features 
 
 - [x] get / set DateTime values
