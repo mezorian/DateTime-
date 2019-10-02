@@ -198,13 +198,36 @@ void DateTimePP::now(bool UTC_) {
     timezone(ctime->tm_gmtoff);
 }
 
+/**
+ * @brief DateTimePP::daysOfYear
+ * @param year_ year (>= 1582) of which this function returns the number of days
+ * @return returns the number of days of the given year_
+ */
+int DateTimePP::daysOfYear(int year_) const {
+    int result;
+
+    if (year_ >= 1582) {
+
+        if (leapYear(year_)) {
+            result = 366;
+        } else {
+            result = 365;
+        }
+
+    } else {
+        throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );
+    }
+
+    return result;
+}
+
 /* --- get time in different formats --- */
 
 /**
  * @brief DateTimePP::unixTime
  * @return returns the date time defined in this object as unixTime / seconds since 1. January 1970 1:00:00 AM
  */
-long DateTimePP::unixTime() const {
+long DateTimePP::toUnixTime() const {
 
     long yearsDiff    = years()  - 1970;
     long monthsDiff   = months() - 1;
@@ -229,6 +252,12 @@ long DateTimePP::unixTime() const {
 
 /* --- get information about dates --- */
 
+/**
+ * @brief DateTimePP::daysOfMonth
+ * @param month_ month of which the number of days have to be returned
+ * @param year_ year (>= 1582) of the month
+ * @return returns the number of days the month_ had in the year for years >= 1582. This function also considers leap-years
+ */
 int DateTimePP::daysOfMonth(int month_, int year_) const {
     int numberOfDaysOfMonth = 0;
 

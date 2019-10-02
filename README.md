@@ -24,6 +24,7 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [ ] get current time as unix time string
 - [ ] throw exceptions if unixTime is not used properly
 - [ ] throw exceptions if values are used that not work in the gregorian calender
+- [ ] document exceptions
 
 ## v1.1.0 Make class canonical
 - [ ] add copy-constructor

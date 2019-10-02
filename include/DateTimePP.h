@@ -31,18 +31,18 @@ class DateTimePP{
         void now(bool UTC_ = false);
 
         /* --- get time in different formats --- */
-        long unixTime() const;
+        long toUnixTime() const;
 
         /* --- get information about dates --- */
+        int daysOfYear(int year_) const;
         int daysOfMonth(int month_, int year_) const;
         bool leapYear(int year_) const;
+        bool test() const {throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );};
 
         /* --- operators --- */
         bool operator==(const DateTimePP& other_) const;
         bool operator!=(const DateTimePP& other_) const;
         //VectorData& operator= (const VectorData& other_);
-        //bool        operator==(const VectorData& other_) const;
-        //bool        operator!=(const VectorData& other_) const;
 
     private:
         int m_nseconds = 0;

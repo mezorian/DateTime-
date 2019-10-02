@@ -740,3 +740,323 @@ TEST_CASE("test if leapYear throws an exception for years < 1582") {
     }
 
 }
+
+TEST_CASE("test if daysOfYear returns the correct number of days for normal years") {
+    DateTimePP dt;
+    int year, days=365;
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2019;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2018;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2017;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2021;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2022;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2023;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2025;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2026;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2027;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2029;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2030;
+    }
+
+    SECTION("test if daysOfYear returns 365 of a normal year") {
+        year = 2031;
+    }
+
+    REQUIRE(dt.daysOfYear(year) == days);
+}
+
+TEST_CASE("test if daysOfYear() returns 366 days only for leap years otherwise 365") {
+    DateTimePP dt;
+    int year, days;
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 2001;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 2002;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 2003;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 1941;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 1942;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 1943;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 2153;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 2154;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for normal years") {
+        year = 2155;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 1904;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 1908;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 1936;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 1940;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 2052;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 2056;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 2060;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 2188;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 2192;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years") {
+        year = 2196;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 2100;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 2200;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 2300;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years if year is divisible by 100 but also divisible by 400") {
+        year = 2400;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 2500;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years if year is divisible by 100 but also divisible by 400") {
+        year = 1600;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 1700;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 1800;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 1900;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years if year is divisible by 100 but also divisible by 400") {
+        year = 2000;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 2100;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 366 for leap years if year is divisible by 100 but also divisible by 400") {
+        year = 4000;
+        days = 366;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 4100;
+        days = 365;
+    }
+
+    SECTION("test if daysOfYear returns 365 for leap years if year is divisible by 100 but not divisible by 400") {
+        year = 4200;
+        days = 365;
+    }
+
+    REQUIRE(dt.daysOfYear(year) == days);
+}
+
+TEST_CASE("test if daysOfYear throws an exception for years < 1582") {
+    DateTimePP dt;
+    int year=0;
+    bool willThrowException=false;
+
+    SECTION("test with years negative years") {
+        year = -1;
+        willThrowException = true;
+    }
+
+    SECTION("test with years negative years") {
+        year = -14;
+        willThrowException = true;
+    }
+
+    SECTION("test with years negative years") {
+        year = -2000;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 0;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 3;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 400;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 1000;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 1581;
+        willThrowException = true;
+    }
+
+    SECTION("test year 1582") {
+        year = 1582;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1583;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1590;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1600;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1811;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 2000;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 2583;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 5583;
+        willThrowException = false;
+    }
+
+    if (willThrowException) {
+        REQUIRE_THROWS(dt.daysOfYear(year));
+    } else {
+        REQUIRE_NOTHROW(dt.daysOfYear(year));
+    }
+
+}
