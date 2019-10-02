@@ -18,7 +18,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         src/DateTimePP.cpp \
-        test/DateTimeTest.cpp
+        test/CurrentTimeTest.cpp \
+        test/DateTimeInfoTest.cpp \
+        test/GeneralTest.cpp \
+        test/OperatorTest.cpp \
+        test/UnixTimeTest.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
