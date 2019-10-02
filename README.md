@@ -1,4 +1,14 @@
 # DateTime++
+
+´´´
+    ___      _      _____ _                            
+   /   \__ _| |_ __/__   (_)_ __ ___   ___   _     _   
+  / /\ / _` | __/ _ \/ /\/ | '_ ` _ \ / _ \_| |_ _| |_ 
+ / /_// (_| | ||  __/ /  | | | | | | |  __/_   _|_   _|
+/___,' \__,_|\__\___\/   |_|_| |_| |_|\___| |_|   |_|  
+                                                       
+´´´
+
 DateTime++ : A easy to use c++ library for date-time calculations
 
 [![Build Status](https://travis-ci.org/mezorian/DateTimePP.svg?branch=master)](https://travis-ci.org/mezorian/DateTimePP) 
