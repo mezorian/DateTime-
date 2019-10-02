@@ -32,15 +32,15 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [ ] add comparison operators > < 
 - [ ] add comparison operators =~ =~~ =~~~
 
-## v1.1.0 Print to console, time-zone calculations
+## v1.2.0 Print to console, time-zone calculations
 - [ ] output datetime in different formats to string
 - [ ] move DateTimeObjects into new time-zone
 
-## v1.2.0 arithmetics with DateTimePP objects
+## v1.3.0 arithmetics with DateTimePP objects
 - [ ] add or subtract DateTimePP objects
 - [ ] add operators + - += -=
 
-## v1.3.0 weekday calculation
+## v1.4.0 weekday calculation
 - [ ] get weekday by date
 
 ## v2.0.0 more test-cases ensuring typical pitfalls of date-time-calculation
