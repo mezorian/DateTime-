@@ -652,3 +652,136 @@ TEST_CASE("bal") {
     REQUIRE(dt.numberOfDaysBetweenTwoDates(dt1,dt2) == numberOfDays);
 }
 
+TEST_CASE("test if numberOfDaysBetweenTwoDates throws an exception for years < 1582") {
+    DateTimePP dt1,dt2;
+    int year=0;
+    bool willThrowException=false;
+
+    SECTION("test with years negative years") {
+        year = -1;
+        willThrowException = true;
+    }
+
+    SECTION("test with years negative years") {
+        year = -14;
+        willThrowException = true;
+    }
+
+    SECTION("test with years negative years") {
+        year = -2000;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 0;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 3;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 400;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 1000;
+        willThrowException = true;
+    }
+
+    SECTION("test with years before 1582") {
+        year = 1581;
+        willThrowException = true;
+    }
+
+    SECTION("test year 1582") {
+        year = 1582;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1583;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1590;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1600;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 1811;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 2000;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 2583;
+        willThrowException = false;
+    }
+
+    SECTION("test with years after 1582") {
+        year = 5583;
+        willThrowException = false;
+    }
+
+    dt1.years(year);
+    dt2.years(year);
+
+    if (willThrowException) {
+        REQUIRE_THROWS(dt1.numberOfDaysBetweenTwoDates(dt1,dt2));
+    } else {
+        REQUIRE_NOTHROW(dt1.numberOfDaysBetweenTwoDates(dt1,dt2));
+    }
+
+}
+
+TEST_CASE("test if numberOfDaysBetweenTwoDates throws an exception if dt1 > dt2") {
+    DateTimePP dt1,dt2;
+    int year1=0, year2=0;
+    bool willThrowException=false;
+
+    SECTION("test with years in wrong order") {
+        year1 = 2600;
+        year2 = 2500;
+        willThrowException = true;
+    }
+
+    SECTION("test with years in wrong order") {
+        year1 = 2015;
+        year2 = 2014;
+        willThrowException = true;
+    }
+
+    SECTION("test with years in wrong order") {
+        year1 = 2000;
+        year2 = 1995;
+        willThrowException = true;
+    }
+
+    SECTION("test with years in wrong order") {
+        year1 = 1601;
+        year2 = 1589;
+        willThrowException = true;
+    }
+
+    dt1.years(year1);
+    dt2.years(year2);
+
+    REQUIRE_THROWS(dt1.numberOfDaysBetweenTwoDates(dt1,dt2));
+    REQUIRE_NOTHROW(dt1.numberOfDaysBetweenTwoDates(dt2,dt1));
+
+}
+

@@ -333,20 +333,30 @@ bool DateTimePP::leapYear(int year_) const {
 int DateTimePP::numberOfDaysBetweenTwoDates(const DateTimePP &date1_, const DateTimePP &date2_) const {
     DateTimePP result, date1 = date1_, date2 = date2_;
     int numberOfDays = 0;
-    //if (date1_ < date2_) { // TODO
 
-    while (date1 < date2) {
-        date1.days(date1.days()+1);
-        numberOfDays++;
-        if ( date1.days() > daysOfMonth(date1.months(),date1.years()) ) {
-            date1.months( date1.months() + 1);
-            date1.days(1);
-        }
-        if ( date1.months() > 12 ) {
-            date1.years( date1.years() + 1);
-            date1.months(1);
-        }
+    if ( (date1_.years() < 1582) || (date2_.years() < 1582) )  {
+        throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );
     }
+
+    if ( (date1_ < date2_) || (date1_ == date2_) ) {
+
+        while (date1 < date2) {
+            date1.days(date1.days()+1);
+            numberOfDays++;
+            if ( date1.days() > daysOfMonth(date1.months(),date1.years()) ) {
+                date1.months( date1.months() + 1);
+                date1.days(1);
+            }
+            if ( date1.months() > 12 ) {
+                date1.years( date1.years() + 1);
+                date1.months(1);
+            }
+        }
+
+    } else {
+        throw std::invalid_argument( "Error : date1_ has to be before date2_ . Please switch the order of the parameters." );
+    }
+
     return numberOfDays;
 }
 
