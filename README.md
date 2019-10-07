@@ -35,7 +35,8 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [ ] add copy-constructor
 - [ ] add standard constructor
 - [ ] add assignment operator = 
-- [ ] add comparison operators > < 
+- [ ] add comparison operators > < <= >=
+- [ ] add more testcases to already implemented operators
 - [ ] add comparison operators =~ =~~ =~~~
 
 ## v1.2.0 Print to console, time-zone calculations
