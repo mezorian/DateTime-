@@ -21,9 +21,14 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [x] set DateTime values to current local time
 - [x] set DateTime values to current UTC time
 - [x] add compare operators == != to compare DateTimePP objects
+- [x] get info if year is leapYear
+- [x] get number of days of month (consider leapYear)
+- [x] get number of days of year (consider leapYear)
+- [ ] get number of days between two dates (consider leapYear)
 - [ ] get current time as unix time string
 - [ ] throw exceptions if unixTime is not used properly
 - [ ] throw exceptions if values are used that not work in the gregorian calender
+- [ ] throw exceptions if DateTimePP objects don't use the same timezone
 - [ ] document exceptions
 
 ## v1.1.0 Make class canonical

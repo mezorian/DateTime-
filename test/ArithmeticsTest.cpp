@@ -149,6 +149,90 @@ TEST_CASE("bal") {
         numberOfDays = 35;
     }
 
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month") {
+        day1 = 24;
+        month1 = 10;
+        year1 = 2015;
+
+        day2 = 29;
+        month2 = 12;
+        year2 = 2015;
+
+        numberOfDays = 66;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month") {
+        day1 = 5;
+        month1 = 4;
+        year1 = 2001;
+
+        day2 = 29;
+        month2 = 7;
+        year2 = 2001;
+
+        numberOfDays = 115;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month") {
+        day1 = 16;
+        month1 = 3;
+        year1 = 2001;
+
+        day2 = 29;
+        month2 = 12;
+        year2 = 2001;
+
+        numberOfDays = 288;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of february in a normal year") {
+        day1 = 16;
+        month1 = 2;
+        year1 = 2003;
+
+        day2 = 29;
+        month2 = 3;
+        year2 = 2003;
+
+        numberOfDays = 41;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of february in a normal year") {
+        day1 = 28;
+        month1 = 2;
+        year1 = 2005;
+
+        day2 = 1;
+        month2 = 3;
+        year2 = 2005;
+
+        numberOfDays = 1;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of february in a leap year") {
+        day1 = 16;
+        month1 = 2;
+        year1 = 2000;
+
+        day2 = 29;
+        month2 = 3;
+        year2 = 2000;
+
+        numberOfDays = 42;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of february in a leap year") {
+        day1 = 28;
+        month1 = 2;
+        year1 = 2060;
+
+        day2 = 1;
+        month2 = 3;
+        year2 = 2060;
+
+        numberOfDays = 2;
+    }
+
     dt1.days(day1);
     dt1.months(month1);
     dt1.years(year1);
