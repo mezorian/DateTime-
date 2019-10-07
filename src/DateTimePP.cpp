@@ -243,6 +243,7 @@ long DateTimePP::toUnixTime() const {
     // add days
     result += daysDiff * 24 * 60 * 60;
     // add months
+
     //result += numberOfDaysSinceMonth(monthsDiff) * 24 * 60 * 60; // TODO
     // add years
     //result += numberOfDaysFrom1970ToYear(yearsDiff) * 24 * 60 * 60; // TODO
@@ -326,6 +327,36 @@ bool DateTimePP::leapYear(int year_) const {
     }
 
     return yearIsLeapYear;
+}
+
+int DateTimePP::numberOfDaysBetweenTwoDates(const DateTimePP &date1_, const DateTimePP &date2_) const {
+    DateTimePP result;
+    int numberOfDays = 0;
+    //if (date1_ < date2_) { // TODO
+
+
+        if (date1_.years() != date2_.years()) {
+            result.years( date2_.years() - date1_.years() );
+            for (int year=date1_.years(); year < date2_.years(); year++) {
+                numberOfDays += daysOfYear(year);
+            }
+        }
+
+        if (date1_.months() != date2_.months()) {
+            result.months( date2_.months() - date1_.months() );
+            for (int month=date1_.months(); month < date2_.months(); month++) {
+                numberOfDays += daysOfMonth(month,date2_.years());
+            }
+        }
+
+        if (date1_.days() != date2_.days()) {
+            numberOfDays += date2_.days();
+            numberOfDays -= date1_.days();
+        }
+
+
+        return numberOfDays;
+    //}     // TODO
 }
 
 /* --- operators --- */

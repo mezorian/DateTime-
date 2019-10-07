@@ -2,7 +2,6 @@
 #include "DateTimePP.h"
 
 /*
-
 TEST_CASE("Test if unix-time conversion is working") {
     DateTimePP dt;
     int nseconds=0, seconds=0, minutes=0, hours=0, days=0, months=0, years=0;
@@ -33,19 +32,6 @@ TEST_CASE("Test if unix-time conversion is working") {
         unixTime = 1018567890;
     }
 
-
-/*    SECTION("test if unixTime works for time before christmas") {
-        nseconds = 0; // not relevant
-        seconds = 15;
-        minutes = 58;
-        hours = 22;
-        days = 11;
-        months = 12;
-        years = -3000;
-        timezone = 1.5; // not relevant
-        unixTime =
-    }*/
-/*
     SECTION("test if unixTime works for beginning of unix epoch") {
         nseconds = 0; // not relevant
         seconds = 0;
@@ -130,6 +116,33 @@ TEST_CASE("Test if unix-time conversion is working") {
         unixTime = -2147487249;
     }
 
+    REQUIRE(dt.nseconds(nseconds) == nseconds);
+    REQUIRE(dt.seconds(seconds)   == seconds);
+    REQUIRE(dt.minutes(minutes)   == minutes);
+    REQUIRE(dt.hours(hours)       == hours);
+    REQUIRE(dt.days(days)         == days);
+    REQUIRE(dt.months(months)     == months);
+    REQUIRE(dt.years(years)       == years);
+    REQUIRE(dt.timezone(timezone) == timezone);
+
+    REQUIRE(dt.toUnixTime() == unixTime);
+}
+
+*/
+/*
+
+SECTION("test if unixTime works for time before christmas") {
+    nseconds = 0; // not relevant
+    seconds = 15;
+    minutes = 58;
+    hours = 22;
+    days = 11;
+    months = 12;
+    years = -3000;
+    timezone = 1.5; // not relevant
+    unixTime =
+}
+
     SECTION("test if unixTime works for times much smaller than storable with 32 bit : January 11, 1000 11:11:11") {
         nseconds = 0; // not relevant
         seconds = 11;
@@ -142,14 +155,4 @@ TEST_CASE("Test if unix-time conversion is working") {
         unixTime = -27080311729;
     }
 
-    REQUIRE(dt.nseconds(nseconds) == nseconds);
-    REQUIRE(dt.seconds(seconds)   == seconds);
-    REQUIRE(dt.minutes(minutes)   == minutes);
-    REQUIRE(dt.hours(hours)       == hours);
-    REQUIRE(dt.days(days)         == days);
-    REQUIRE(dt.months(months)     == months);
-    REQUIRE(dt.years(years)       == years);
-    REQUIRE(dt.timezone(timezone) == timezone);
-
-    REQUIRE(dt.unixTime() == unixTime);
-} */
+ */

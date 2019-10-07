@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         src/DateTimePP.cpp \
+        test/ArithmeticsTest.cpp \
         test/CurrentTimeTest.cpp \
         test/DateTimeInfoTest.cpp \
         test/GeneralTest.cpp \

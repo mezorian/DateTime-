@@ -37,7 +37,7 @@ class DateTimePP{
         int daysOfYear(int year_) const;
         int daysOfMonth(int month_, int year_) const;
         bool leapYear(int year_) const;
-        bool test() const {throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );};
+        int numberOfDaysBetweenTwoDates(const DateTimePP& date_ , const DateTimePP& date2_) const;
 
         /* --- operators --- */
         bool operator==(const DateTimePP& other_) const;
