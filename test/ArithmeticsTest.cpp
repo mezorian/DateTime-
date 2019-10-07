@@ -453,6 +453,194 @@ TEST_CASE("bal") {
         numberOfDays = 366;
     }
 
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a normal year") {
+        day1 = 3;
+        month1 = 10;
+        year1 = 2014;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2015;
+
+        numberOfDays = 454;
+    }
+
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a normal year") {
+        day1 = 15;
+        month1 = 7;
+        year1 = 1974;
+
+        day2 = 20;
+        month2 = 10;
+        year2 = 1975;
+
+        numberOfDays = 462;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a normal year") {
+        day1 = 31;
+        month1 = 10;
+        year1 = 2049;
+
+        day2 = 3;
+        month2 = 10;
+        year2 = 2050;
+
+        numberOfDays = 337;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a leap year") {
+        day1 = 3;
+        month1 = 10;
+        year1 = 2015;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2016;
+
+        numberOfDays = 455;
+    }
+
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a leap year") {
+        day1 = 15;
+        month1 = 7;
+        year1 = 1975;
+
+        day2 = 20;
+        month2 = 10;
+        year2 = 1976;
+
+        numberOfDays = 463;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a leap year") {
+        day1 = 31;
+        month1 = 10;
+        year1 = 2047;
+
+        day2 = 3;
+        month2 = 10;
+        year2 = 2048;
+
+        numberOfDays = 338;
+    }
+
+    // -
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a normal year") {
+        day1 = 3;
+        month1 = 10;
+        year1 = 2013;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2015;
+
+        numberOfDays = 819;
+    }
+
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a normal year") {
+        day1 = 15;
+        month1 = 7;
+        year1 = 1972;
+
+        day2 = 20;
+        month2 = 10;
+        year2 = 1975;
+
+        numberOfDays = 1192;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a normal year") {
+        day1 = 31;
+        month1 = 10;
+        year1 = 2049;
+
+        day2 = 3;
+        month2 = 10;
+        year2 = 2051;
+
+        numberOfDays = 702;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a leap year") {
+        day1 = 3;
+        month1 = 10;
+        year1 = 2015;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2019;
+
+        numberOfDays = 1550;
+    }
+
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a leap year") {
+        day1 = 15;
+        month1 = 7;
+        year1 = 1975;
+
+        day2 = 20;
+        month2 = 10;
+        year2 = 1979;
+
+        numberOfDays = 1558;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of a leap year") {
+        day1 = 30;
+        month1 = 4;
+        year1 = 2047;
+
+        day2 = 3;
+        month2 = 12;
+        year2 = 2050;
+
+        numberOfDays = 1313;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of multiple years") {
+        day1 = 3;
+        month1 = 10;
+        year1 = 2000;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2050;
+
+        numberOfDays = 18351;
+    }
+
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of multiple years") {
+        day1 = 15;
+        month1 = 7;
+        year1 = 1975;
+
+        day2 = 20;
+        month2 = 10;
+        year2 = 2019;
+
+        numberOfDays = 16168;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of multiple years") {
+        day1 = 30;
+        month1 = 4;
+        year1 = 1647;
+
+        day2 = 7;
+        month2 = 10;
+        year2 = 3019;
+
+        numberOfDays = 501272;
+    }
+
+
     dt1.days(day1);
     dt1.months(month1);
     dt1.years(year1);
