@@ -1,7 +1,7 @@
 #include "catch.hpp"
 #include "DateTimePP.h"
 
-/*
+
 
 TEST_CASE("bal") {
     DateTimePP dt,dt1,dt2;
@@ -396,13 +396,61 @@ TEST_CASE("bal") {
     SECTION("test if numberOfDaysBetweenTwoDates works for a whole normal year") {
         day1 = 31;
         month1 = 12;
-        year1 = 2019;
+        year1 = 2018;
 
         day2 = 31;
         month2 = 12;
         year2 = 2019;
 
         numberOfDays = 365;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works for a whole normal year") {
+        day1 = 31;
+        month1 = 12;
+        year1 = 2180;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2181;
+
+        numberOfDays = 365;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works for a whole leap year") {
+        day1 = 31;
+        month1 = 12;
+        year1 = 1959;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 1960;
+
+        numberOfDays = 366;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works for a whole leap year") {
+        day1 = 31;
+        month1 = 12;
+        year1 = 1999;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2000;
+
+        numberOfDays = 366;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works for a whole leap year") {
+        day1 = 31;
+        month1 = 12;
+        year1 = 2019;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2020;
+
+        numberOfDays = 366;
     }
 
     dt1.days(day1);
@@ -415,4 +463,4 @@ TEST_CASE("bal") {
 
     REQUIRE(dt.numberOfDaysBetweenTwoDates(dt1,dt2) == numberOfDays);
 }
-*/
+

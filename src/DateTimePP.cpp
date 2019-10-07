@@ -329,34 +329,25 @@ bool DateTimePP::leapYear(int year_) const {
     return yearIsLeapYear;
 }
 
+
 int DateTimePP::numberOfDaysBetweenTwoDates(const DateTimePP &date1_, const DateTimePP &date2_) const {
-    DateTimePP result;
+    DateTimePP result, date1 = date1_, date2 = date2_;
     int numberOfDays = 0;
     //if (date1_ < date2_) { // TODO
 
-
-        if (date1_.years() != date2_.years()) {
-            result.years( date2_.years() - date1_.years() );
-            for (int year=date1_.years(); year < date2_.years(); year++) {
-                numberOfDays += daysOfYear(year);
-            }
+    while (date1 < date2) {
+        date1.days(date1.days()+1);
+        numberOfDays++;
+        if ( date1.days() > daysOfMonth(date1.months(),date1.years()) ) {
+            date1.months( date1.months() + 1);
+            date1.days(1);
         }
-
-        if (date1_.months() != date2_.months()) {
-            result.months( date2_.months() - date1_.months() );
-            for (int month=date1_.months(); month < date2_.months(); month++) {
-                numberOfDays += daysOfMonth(month,date2_.years());
-            }
+        if ( date1.months() > 12 ) {
+            date1.years( date1.years() + 1);
+            date1.months(1);
         }
-
-        if (date1_.days() != date2_.days()) {
-            numberOfDays -= date1_.days();
-            numberOfDays += date2_.days();
-        }
-
-
-        return numberOfDays;
-    //}     // TODO
+    }
+    return numberOfDays;
 }
 
 
