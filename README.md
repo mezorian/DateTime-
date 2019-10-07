@@ -20,7 +20,7 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [x] get / set DateTime values
 - [x] set DateTime values to current local time
 - [x] set DateTime values to current UTC time
-- [x] add compare operators == != to compare DateTimePP objects
+- [x] add compare operators == != < to compare DateTimePP objects
 - [x] get info if year is leapYear
 - [x] get number of days of month (consider leapYear)
 - [x] get number of days of year (consider leapYear)

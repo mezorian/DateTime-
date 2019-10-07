@@ -38,10 +38,12 @@ class DateTimePP{
         int daysOfMonth(int month_, int year_) const;
         bool leapYear(int year_) const;
         int numberOfDaysBetweenTwoDates(const DateTimePP& date_ , const DateTimePP& date2_) const;
+        int numberOfDaysBetweenTwoDates2(const DateTimePP& date_ , const DateTimePP& date2_) const;
 
         /* --- operators --- */
         bool operator==(const DateTimePP& other_) const;
         bool operator!=(const DateTimePP& other_) const;
+        bool operator<(const DateTimePP& other_) const;
         //VectorData& operator= (const VectorData& other_);
 
     private:

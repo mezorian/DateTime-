@@ -112,3 +112,132 @@ TEST_CASE("Test if equal operator returns false and unqual operator returns true
     REQUIRE_FALSE(dt1 == dt2);
     REQUIRE(dt1 != dt2);
 }
+
+TEST_CASE("Test if < operator returns true if any of the date time variables is smaller") {
+    DateTimePP dt1, dt2;
+
+    int nseconds, seconds, minutes, hours, days, months, years;
+    double timezone=0.0;
+
+    nseconds = 200020;
+    seconds = 12;
+    minutes = 23;
+    hours = 4;
+    days = 23;
+    months = 6;
+    years = 2013;
+    timezone = 2.0;
+
+    dt1.nseconds(nseconds);
+    dt1.seconds(seconds);
+    dt1.minutes(minutes);
+    dt1.hours(hours);
+    dt1.days(days);
+    dt1.months(months);
+    dt1.years(years);
+    dt1.timezone(timezone);
+
+    dt2.nseconds(nseconds);
+    dt2.seconds(seconds);
+    dt2.minutes(minutes);
+    dt2.hours(hours);
+    dt2.days(days);
+    dt2.months(months);
+    dt2.years(years);
+    dt2.timezone(timezone);
+
+    SECTION("check if < returns true if nseconds is smaller") {
+        dt2.nseconds(nseconds + 1);
+    }
+
+    SECTION("check if < returns true if seconds is smaller") {
+        dt2.seconds(seconds + 1);
+    }
+
+    SECTION("check if < returns true if minutes is smaller") {
+        dt2.minutes(minutes + 1);
+    }
+
+    SECTION("check if < returns true if hours is smaller") {
+        dt2.hours(hours + 1);
+    }
+
+    SECTION("check if < returns true if days is smaller") {
+        dt2.days(days + 1);
+    }
+
+    SECTION("check if < returns true if months is smaller") {
+        dt2.months(months + 1);
+    }
+
+    SECTION("check if < returns true if years is smaller") {
+        dt2.years(years + 1);
+    }
+
+    REQUIRE(dt1 < dt2);
+    REQUIRE_FALSE(dt2 < dt1);
+}
+
+TEST_CASE("test that < operator does not return true if the DateTimePP objects are equal") {
+    DateTimePP dt1, dt2;
+
+    int nseconds, seconds, minutes, hours, days, months, years;
+    double timezone=0.0;
+
+    SECTION("test that < operator does not return true if the DateTimePP objects are equalfor normal valid values") {
+        nseconds = 200020;
+        seconds = 12;
+        minutes = 23;
+        hours = 4;
+        days = 23;
+        months = 6;
+        years = 2013;
+        timezone = 2.0;
+    }
+
+    SECTION("test that < operator does not return true if the DateTimePP objects are equal for normal valid values") {
+        nseconds = 33333;
+        seconds = 30;
+        minutes = 31;
+        hours = 23;
+        days = 28;
+        months = 11;
+        years = 2000;
+        timezone = 1.5;
+    }
+
+
+    SECTION("test that < operator does not return true if the DateTimePP objects are equal for time before christmas") {
+        nseconds = 234234;
+        seconds = 15;
+        minutes = 58;
+        hours = 22;
+        days = 11;
+        months = 12;
+        years = -3000;
+        timezone = 1.5;
+    }
+
+    dt1.nseconds(nseconds);
+    dt1.seconds(seconds);
+    dt1.minutes(minutes);
+    dt1.hours(hours);
+    dt1.days(days);
+    dt1.months(months);
+    dt1.years(years);
+    dt1.timezone(timezone);
+
+    dt2.nseconds(nseconds);
+    dt2.seconds(seconds);
+    dt2.minutes(minutes);
+    dt2.hours(hours);
+    dt2.days(days);
+    dt2.months(months);
+    dt2.years(years);
+    dt2.timezone(timezone);
+
+    REQUIRE(dt1 == dt2);
+    REQUIRE_FALSE(dt1 < dt2);
+    REQUIRE_FALSE(dt2 < dt1);
+
+}

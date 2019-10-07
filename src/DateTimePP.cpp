@@ -350,14 +350,15 @@ int DateTimePP::numberOfDaysBetweenTwoDates(const DateTimePP &date1_, const Date
         }
 
         if (date1_.days() != date2_.days()) {
-            numberOfDays += date2_.days();
             numberOfDays -= date1_.days();
+            numberOfDays += date2_.days();
         }
 
 
         return numberOfDays;
     //}     // TODO
 }
+
 
 /* --- operators --- */
 
@@ -389,5 +390,52 @@ bool DateTimePP::operator==(const DateTimePP &other_) const {
 bool DateTimePP::operator!=(const DateTimePP &other_) const {
     // check if identical and return the invers
     return (!((*this == other_)));
+}
+
+/**
+ * @brief DateTimePP::operator <
+ * @param other_ other DateTimePP object to compare with
+ * @return returns true if (*this) is before other_ . For this comparison all time variables from years downto nseconds are used
+ */
+bool DateTimePP::operator<(const DateTimePP &other_) const {
+    bool result=false;
+
+    // check years
+    if ( (*this).years() < other_.years() ) {
+        result = true;
+    } else if ( (*this).years() == other_.years() ) {
+        // check months
+        if ( (*this).months() < other_.months() ) {
+            result = true;
+        } else if ( (*this).months() == other_.months() ) {
+            // check days
+            if ( (*this).days() < other_.days() ) {
+                result = true;
+            } else if ( (*this).days() == other_.days() ) {
+                // check hours
+                if ( (*this).hours() < other_.hours() ) {
+                    result = true;
+                } else if ( (*this).hours() == other_.hours() ) {
+                    // check minutes
+                    if ( (*this).minutes() < other_.minutes() ) {
+                        result = true;
+                    } else if ( (*this).minutes() == other_.minutes() ) {
+                        // check seconds
+                        if ( (*this).seconds() < other_.seconds() ) {
+                            result = true;
+                        } else if ( (*this).seconds() == other_.seconds() ) {
+                            // check nseconds
+                            if ( (*this).nseconds() < other_.nseconds() ) {
+                                result = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // return result value
+    return result;
 }
 

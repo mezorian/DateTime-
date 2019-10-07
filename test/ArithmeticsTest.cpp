@@ -1,6 +1,8 @@
 #include "catch.hpp"
 #include "DateTimePP.h"
 
+/*
+
 TEST_CASE("bal") {
     DateTimePP dt,dt1,dt2;
     int month1, year1, day1, month2, year2, day2, numberOfDays;
@@ -89,7 +91,7 @@ TEST_CASE("bal") {
         numberOfDays = 5;
     }
 
-    SECTION("test if numberOfDaysBetweenTwoDates with one day difference returns 5") {
+    SECTION("test if numberOfDaysBetweenTwoDates with 5 days difference returns 5") {
         day1 = 1;
         month1 = 1;
         year1 = 1970;
@@ -101,7 +103,7 @@ TEST_CASE("bal") {
         numberOfDays = 5;
     }
 
-    SECTION("test if numberOfDaysBetweenTwoDates with one day difference returns 5") {
+    SECTION("test if numberOfDaysBetweenTwoDates with 5 days difference returns 5") {
         day1 = 24;
         month1 = 12;
         year1 = 2015;
@@ -113,7 +115,7 @@ TEST_CASE("bal") {
         numberOfDays = 5;
     }
 
-    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month") {
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month in a normal year") {
         day1 = 14;
         month1 = 5;
         year1 = 2001;
@@ -125,7 +127,7 @@ TEST_CASE("bal") {
         numberOfDays = 19;
     }
 
-    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month") {
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month in a normal year") {
         day1 = 1;
         month1 = 1;
         year1 = 1970;
@@ -137,7 +139,7 @@ TEST_CASE("bal") {
         numberOfDays = 32;
     }
 
-    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month") {
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month in a normal year") {
         day1 = 24;
         month1 = 11;
         year1 = 2015;
@@ -149,7 +151,7 @@ TEST_CASE("bal") {
         numberOfDays = 35;
     }
 
-    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month") {
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a normal year") {
         day1 = 24;
         month1 = 10;
         year1 = 2015;
@@ -161,7 +163,7 @@ TEST_CASE("bal") {
         numberOfDays = 66;
     }
 
-    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month") {
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a normal year") {
         day1 = 5;
         month1 = 4;
         year1 = 2001;
@@ -173,7 +175,7 @@ TEST_CASE("bal") {
         numberOfDays = 115;
     }
 
-    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month") {
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a normal year") {
         day1 = 16;
         month1 = 3;
         year1 = 2001;
@@ -233,6 +235,176 @@ TEST_CASE("bal") {
         numberOfDays = 2;
     }
 
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of february in a leap year") {
+        day1 = 27;
+        month1 = 2;
+        year1 = 1972;
+
+        day2 = 25;
+        month2 = 3;
+        year2 = 1972;
+
+        numberOfDays = 27;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month in a leap year") {
+        day1 = 14;
+        month1 = 5;
+        year1 = 2000;
+
+        day2 = 2;
+        month2 = 6;
+        year2 = 2000;
+
+        numberOfDays = 19;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month in a leap year") {
+        day1 = 1;
+        month1 = 1;
+        year1 = 1972;
+
+        day2 = 2;
+        month2 = 2;
+        year2 = 1972;
+
+        numberOfDays = 32;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of the month in a normal year") {
+        day1 = 24;
+        month1 = 11;
+        year1 = 2016;
+
+        day2 = 29;
+        month2 = 12;
+        year2 = 2016;
+
+        numberOfDays = 35;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a leap year") {
+        day1 = 24;
+        month1 = 10;
+        year1 = 2132;
+
+        day2 = 29;
+        month2 = 12;
+        year2 = 2132;
+
+        numberOfDays = 66;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a leap year") {
+        day1 = 5;
+        month1 = 4;
+        year1 = 2000;
+
+        day2 = 29;
+        month2 = 7;
+        year2 = 2000;
+
+        numberOfDays = 115;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a leap year") {
+        day1 = 16;
+        month1 = 3;
+        year1 = 2180;
+
+        day2 = 29;
+        month2 = 12;
+        year2 = 2180;
+
+        numberOfDays = 288;
+    }
+
+    // -
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a leap year") {
+        day1 = 24;
+        month1 = 1;
+        year1 = 2132;
+
+        day2 = 29;
+        month2 = 3;
+        year2 = 2132;
+
+        numberOfDays = 65;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a leap year") {
+        day1 = 5;
+        month1 = 2;
+        year1 = 2000;
+
+        day2 = 29;
+        month2 = 7;
+        year2 = 2000;
+
+        numberOfDays = 175;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works over the end of more than one month in a leap year") {
+        day1 = 16;
+        month1 = 2;
+        year1 = 2180;
+
+        day2 = 30;
+        month2 = 12;
+        year2 = 2180;
+
+        numberOfDays = 318;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works for a whole normal year") {
+        day1 = 31;
+        month1 = 12;
+        year1 = 2180;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2181;
+
+        numberOfDays = 365;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works for a whole normal year") {
+        day1 = 31;
+        month1 = 12;
+        year1 = 1960;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 1961;
+
+        numberOfDays = 365;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works for a whole normal year") {
+        day1 = 31;
+        month1 = 12;
+        year1 = 2000;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2001;
+
+        numberOfDays = 365;
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates works for a whole normal year") {
+        day1 = 31;
+        month1 = 12;
+        year1 = 2019;
+
+        day2 = 31;
+        month2 = 12;
+        year2 = 2019;
+
+        numberOfDays = 365;
+    }
+
     dt1.days(day1);
     dt1.months(month1);
     dt1.years(year1);
@@ -243,3 +415,4 @@ TEST_CASE("bal") {
 
     REQUIRE(dt.numberOfDaysBetweenTwoDates(dt1,dt2) == numberOfDays);
 }
+*/
