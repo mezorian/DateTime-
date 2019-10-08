@@ -7,7 +7,7 @@ TEST_CASE("Test if unix-time conversion is working") {
     int nseconds=0, seconds=0, minutes=0, hours=0, days=0, months=0, years=0;
     double timezone=0.0;
     int unixTime = 0;
-/*
+
     SECTION("test if unixTime works for normal valid values") {
         nseconds = 0; // not relevant
         seconds = 12;
@@ -17,7 +17,7 @@ TEST_CASE("Test if unix-time conversion is working") {
         months = 6;
         years = 2013;
         timezone = 2.0; // not relevant
-        unixTime = 1415247792;
+        unixTime = 1371961392;
     }
 
     SECTION("test if unixTime for normal valid values") {
@@ -29,9 +29,9 @@ TEST_CASE("Test if unix-time conversion is working") {
         months = 11;
         years = 2000;
         timezone = 1.5; // not relevant
-        unixTime = 1018567890;
+        unixTime = 975454290;
     }
-*/
+
     SECTION("test if unixTime works for beginning of unix epoch") {
         nseconds = 0; // not relevant
         seconds = 0;
@@ -78,6 +78,186 @@ TEST_CASE("Test if unix-time conversion is working") {
         years = 1970;
         timezone = 0; // not relevant
         unixTime = 59;
+    }
+
+    SECTION("test if unixTime works for counting minutes") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 1;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 60;
+    }
+
+    SECTION("test if unixTime works for counting minutes") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 5;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 300;
+    }
+
+    SECTION("test if unixTime works for counting minutes") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 59;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 3540;
+    }
+
+    SECTION("test if unixTime works for counting hours") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 1;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 3600;
+    }
+
+    SECTION("test if unixTime works for counting hours") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 5;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 18000;
+    }
+
+    SECTION("test if unixTime works for counting hours") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 23;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 82800;
+    }
+
+    SECTION("test if unixTime works for counting days") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 2;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 86400;
+    }
+
+    SECTION("test if unixTime works for counting days") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 6;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 432000;
+    }
+
+    SECTION("test if unixTime works for counting days") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 31;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 2592000;
+    }
+
+    SECTION("test if unixTime works for counting months") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 2;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 2678400;
+    }
+
+    SECTION("test if unixTime works for counting months") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 6;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 13046400;
+    }
+
+    SECTION("test if unixTime works for counting months") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 10;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 23587200;
+    }
+
+    SECTION("test if unixTime works for counting years") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1971;
+        timezone = 0; // not relevant
+        unixTime = 31536000;
+    }
+
+    SECTION("test if unixTime works for counting years") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1975;
+        timezone = 0; // not relevant
+        unixTime = 157766400;
+    }
+
+    SECTION("test if unixTime works for counting years") {
+        nseconds = 0; // not relevant
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1980;
+        timezone = 0; // not relevant
+        unixTime = 315532800;
     }
 
 /*
