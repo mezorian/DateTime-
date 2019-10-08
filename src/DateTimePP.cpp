@@ -164,6 +164,29 @@ double DateTimePP::timezone(double newValue_) {
     return timezone();
 }
 
+/**
+ * @brief DateTimePP::date
+ * @return returns a date-time object which consists only of date variables, time variables are all set to zero
+ */
+DateTimePP DateTimePP::date() const {
+    DateTimePP result;
+
+    // set time variables to zero
+    result.nseconds(0);
+    result.seconds(0);
+    result.minutes(0);
+    result.hours(0);
+    result.timezone(0);
+
+    // set date variables to date values of (*this)
+    result.days  ((*this).days()  );
+    result.months((*this).months());
+    result.years ((*this).years() );
+
+    // return result object
+    return result;
+}
+
 /* --- get current time --- */
 
 /**
@@ -229,24 +252,26 @@ int DateTimePP::daysOfYear(int year_) const {
  */
 long DateTimePP::toUnixTime() const {
 
-    long yearsDiff    = years()  - 1970;
-    long monthsDiff   = months() - 1;
-    long daysDiff     = days()   - 1;
-    long hoursDiff    = hours()  - 1;
+    DateTimePP dt1970;
+    dt1970.nseconds(0);
+    dt1970.seconds(0);
+    dt1970.minutes(0);
+    dt1970.hours(0);
+    dt1970.days(1);
+    dt1970.months(1);
+    dt1970.years(1970);
+
+    int daysDiff = numberOfDaysBetweenTwoDates(dt1970,(*this));
+
 
     // add seconds
-    long result = seconds();
+    long result = (*this).seconds();
     // add minutes
-    result += minutes() * 60;
+    result += (*this).minutes() * 60;
     // add hours
-    result += hoursDiff * 60 * 60;
+    result += (*this).hours() * 60 * 60;
     // add days
     result += daysDiff * 24 * 60 * 60;
-    // add months
-
-    //result += numberOfDaysSinceMonth(monthsDiff) * 24 * 60 * 60; // TODO
-    // add years
-    //result += numberOfDaysFrom1970ToYear(yearsDiff) * 24 * 60 * 60; // TODO
 
     return result;
 }
@@ -330,6 +355,21 @@ bool DateTimePP::leapYear(int year_) const {
 }
 
 
+/**
+ * @brief DateTimePP::numberOfDaysBetweenTwoDates
+ * @param date1_ start-date with year (>= 1582)
+ * @param date2_ end-date with year (>= 1582)
+ * @return returns the number of days between the two dates
+ *
+ * This function calculates in full days. The time-stamp and time-zone are not considered.
+ * Leap years are considered during calculation.
+ * date1_ has to be <= date2_
+ *
+ * For example :
+ *  : numberOfDaysBetweenTwoDates(1.1.2000,1.1.2000) == 0
+ *  : numberOfDaysBetweenTwoDates(1.1.2000,2.1.2000) == 1
+ *  : numberOfDaysBetweenTwoDates(1.1.2000,10.1.2000) == 9
+ */
 int DateTimePP::numberOfDaysBetweenTwoDates(const DateTimePP &date1_, const DateTimePP &date2_) const {
     DateTimePP result, date1 = date1_, date2 = date2_;
     int numberOfDays = 0;
@@ -340,7 +380,7 @@ int DateTimePP::numberOfDaysBetweenTwoDates(const DateTimePP &date1_, const Date
 
     if ( (date1_ < date2_) || (date1_ == date2_) ) {
 
-        while (date1 < date2) {
+        while (date1.date() < date2.date()) {
             date1.days(date1.days()+1);
             numberOfDays++;
             if ( date1.days() > daysOfMonth(date1.months(),date1.years()) ) {

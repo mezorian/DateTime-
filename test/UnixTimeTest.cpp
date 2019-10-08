@@ -1,13 +1,13 @@
 #include "catch.hpp"
 #include "DateTimePP.h"
 
-/*
+
 TEST_CASE("Test if unix-time conversion is working") {
     DateTimePP dt;
     int nseconds=0, seconds=0, minutes=0, hours=0, days=0, months=0, years=0;
     double timezone=0.0;
     int unixTime = 0;
-
+/*
     SECTION("test if unixTime works for normal valid values") {
         nseconds = 0; // not relevant
         seconds = 12;
@@ -31,12 +31,12 @@ TEST_CASE("Test if unix-time conversion is working") {
         timezone = 1.5; // not relevant
         unixTime = 1018567890;
     }
-
+*/
     SECTION("test if unixTime works for beginning of unix epoch") {
         nseconds = 0; // not relevant
         seconds = 0;
         minutes = 0;
-        hours = 1;
+        hours = 0;
         days = 1;
         months = 1;
         years = 1970;
@@ -44,6 +44,43 @@ TEST_CASE("Test if unix-time conversion is working") {
         unixTime = 0;
     }
 
+    SECTION("test if unixTime works for counting seconds") {
+        nseconds = 0; // not relevant
+        seconds = 1;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 1;
+    }
+
+    SECTION("test if unixTime works for counting seconds") {
+        nseconds = 0; // not relevant
+        seconds = 5;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 5;
+    }
+
+    SECTION("test if unixTime works for counting seconds") {
+        nseconds = 0; // not relevant
+        seconds = 59;
+        minutes = 0;
+        hours = 0;
+        days = 1;
+        months = 1;
+        years = 1970;
+        timezone = 0; // not relevant
+        unixTime = 59;
+    }
+
+/*
     SECTION("test if unixTime works for before the beginning of unix epoch") {
         nseconds = 0; // not relevant
         seconds = 0;
@@ -114,7 +151,7 @@ TEST_CASE("Test if unix-time conversion is working") {
         years = 1901;
         timezone = 0; // not relevant
         unixTime = -2147487249;
-    }
+    } */
 
     REQUIRE(dt.nseconds(nseconds) == nseconds);
     REQUIRE(dt.seconds(seconds)   == seconds);
@@ -128,7 +165,7 @@ TEST_CASE("Test if unix-time conversion is working") {
     REQUIRE(dt.toUnixTime() == unixTime);
 }
 
-*/
+
 /*
 
 SECTION("test if unixTime works for time before christmas") {

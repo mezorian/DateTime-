@@ -26,6 +26,7 @@ class DateTimePP{
         int years(int newValue_)    ;
         double timezone() const;
         double timezone(double newValue_) ;
+        DateTimePP date() const;
 
         /* --- get current time --- */
         void now(bool UTC_ = false);
@@ -38,7 +39,6 @@ class DateTimePP{
         int daysOfMonth(int month_, int year_) const;
         bool leapYear(int year_) const;
         int numberOfDaysBetweenTwoDates(const DateTimePP& date_ , const DateTimePP& date2_) const;
-        int numberOfDaysBetweenTwoDates2(const DateTimePP& date_ , const DateTimePP& date2_) const;
 
         /* --- operators --- */
         bool operator==(const DateTimePP& other_) const;

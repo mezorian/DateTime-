@@ -3,7 +3,7 @@
 
 
 
-TEST_CASE("bal") {
+TEST_CASE("test if numberOfDaysBetweenTwoDates is returning the correct number of days") {
     DateTimePP dt,dt1,dt2;
     int month1, year1, day1, month2, year2, day2, numberOfDays;
 
@@ -785,3 +785,74 @@ TEST_CASE("test if numberOfDaysBetweenTwoDates throws an exception if dt1 > dt2"
 
 }
 
+TEST_CASE("test if 'date is equal, but time not returns 1'-bug is not occuring") {
+    DateTimePP dt,dt1,dt2;
+
+    int nseconds = 10000;
+    int seconds = 20;
+    int minutes = 46;
+    int hours = 6;
+    int days = 15;
+    int months = 5;
+    int years = 2001;
+
+    dt1.nseconds(nseconds);
+    dt1.seconds(seconds);
+    dt1.minutes(minutes);
+    dt1.hours(hours);
+    dt1.days(days);
+    dt1.months(months);
+    dt1.years(years);
+
+    dt2 = dt1;
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in nseconds") {
+        dt2.nseconds(nseconds+1);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in nseconds") {
+        dt2.nseconds(nseconds+5);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in nseconds") {
+        dt2.nseconds(nseconds+10);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in seconds") {
+        dt2.seconds(seconds+1);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in seconds") {
+        dt2.seconds(seconds+5);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in seconds") {
+        dt2.seconds(seconds+10);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in minutes") {
+        dt2.minutes(minutes+1);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in minutes") {
+        dt2.minutes(minutes+5);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in minutes") {
+        dt2.minutes(minutes+10);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in hours") {
+        dt2.hours(hours+1);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in hours") {
+        dt2.hours(hours+5);
+    }
+
+    SECTION("test if numberOfDaysBetweenTwoDates with same date returns 0 for changes in hours") {
+        dt2.hours(hours+10);
+    }
+
+    REQUIRE(dt.numberOfDaysBetweenTwoDates(dt1,dt2) == 0);
+}
