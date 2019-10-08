@@ -27,7 +27,7 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [x] get number of days between two dates (consider leapYear)
 - [x] get current time as unix time string
 - [x] do standard tests for toUnixTime()
-- [ ] do extended tests for toUnixTime()
+- [x] do extended tests for toUnixTime()
 - [ ] throw exceptions if unixTime is not used properly
 - [ ] throw exceptions if values are used that not work in the gregorian calender
 - [ ] throw exceptions if DateTimePP objects don't use the same timezone
@@ -49,10 +49,16 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [ ] add or subtract DateTimePP objects
 - [ ] add operators + - += -=
 
-## v1.4.0 weekday calculation
+## v1.4.0 weekday / calenderweek calculation
+- [ ] get calenderweek by date
 - [ ] get weekday by date
 
-## v2.0.0 more test-cases ensuring typical pitfalls of date-time-calculation
+## v2.0.0 negative unix time, extended days between dates
+- [ ] support negative unix times
+- [ ] check for which numbers numberOfDaysBetweenTwoDates and other functions run into datatype-out-of-range-problems
+- [ ] either solve the out range problems or throw exceptions in these cases
+
+## v2.1.0 more test-cases ensuring typical pitfalls of date-time-calculation
 - [ ] ensure winter time works
 - [ ] ensure leap year works
 - [ ] making all functions non-gregorian-time-save

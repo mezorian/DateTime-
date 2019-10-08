@@ -13,8 +13,8 @@ TEST_CASE("Test if now() stores the current local date time") {
     REQUIRE(dt.minutes() == ctime->tm_min);
     REQUIRE(dt.hours() == ctime->tm_hour);
     REQUIRE(dt.days() == ctime->tm_mday);
-    REQUIRE(dt.months() == ctime->tm_mon);
-    REQUIRE(dt.years() == ctime->tm_year);
+    REQUIRE(dt.months() == ctime->tm_mon+1);
+    REQUIRE(dt.years() == ctime->tm_year+1900);
     REQUIRE(dt.timezone() == ctime->tm_gmtoff);
 }
 
@@ -30,7 +30,7 @@ TEST_CASE("Test if now(true) stores the current UTC date time") {
     REQUIRE(dt.minutes() == ctime->tm_min);
     REQUIRE(dt.hours() == ctime->tm_hour);
     REQUIRE(dt.days() == ctime->tm_mday);
-    REQUIRE(dt.months() == ctime->tm_mon);
-    REQUIRE(dt.years() == ctime->tm_year);
+    REQUIRE(dt.months() == ctime->tm_mon+1);
+    REQUIRE(dt.years() == ctime->tm_year+1900);
     REQUIRE(dt.timezone() == ctime->tm_gmtoff);
 }

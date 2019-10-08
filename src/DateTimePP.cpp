@@ -216,8 +216,8 @@ void DateTimePP::now(bool UTC_) {
     minutes(ctime->tm_min);
     hours(ctime->tm_hour);
     days(ctime->tm_mday);
-    months(ctime->tm_mon);
-    years(ctime->tm_year);
+    months(ctime->tm_mon+1);
+    years(ctime->tm_year+1900);
     timezone(ctime->tm_gmtoff);
 }
 
@@ -263,15 +263,14 @@ long DateTimePP::toUnixTime() const {
 
     int daysDiff = numberOfDaysBetweenTwoDates(dt1970,(*this));
 
-
     // add seconds
-    long result = (*this).seconds();
+    long result = static_cast<long>((*this).seconds());
     // add minutes
-    result += (*this).minutes() * 60;
+    result += static_cast<long>((*this).minutes()) * static_cast<long>(60);
     // add hours
-    result += (*this).hours() * 60 * 60;
+    result += static_cast<long>((*this).hours()) * static_cast<long>(60) * static_cast<long>(60);
     // add days
-    result += daysDiff * 24 * 60 * 60;
+    result += static_cast<long>(daysDiff) * static_cast<long>(24) * static_cast<long>(60) * static_cast<long>(60);
 
     return result;
 }

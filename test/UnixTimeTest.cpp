@@ -1,12 +1,13 @@
 #include "catch.hpp"
 #include "DateTimePP.h"
-
+#include <chrono>
+#include <thread>
 
 TEST_CASE("Test if unix-time conversion is working") {
     DateTimePP dt;
     int nseconds=0, seconds=0, minutes=0, hours=0, days=0, months=0, years=0;
     double timezone=0.0;
-    int unixTime = 0;
+    long unixTime = 0;
 
     SECTION("test if unixTime works for normal valid values") {
         nseconds = 0; // not relevant
@@ -271,13 +272,13 @@ TEST_CASE("Test if unix-time conversion is working") {
         years = 1960;
         timezone = 0; // not relevant
         unixTime = -315619200;
-    }
+    } */
 
-    SECTION("test if unixTime works for biggest possible 32 bit time : 19. January 2038, 4:14:08") {
+    SECTION("test if unixTime works for biggest possible 32 bit time : 19. January 2038, 3:14:08") {
         nseconds = 0; // not relevant
         seconds = 8;
         minutes = 14;
-        hours = 4;
+        hours = 3;
         days = 19;
         months = 1;
         years = 2038;
@@ -285,11 +286,11 @@ TEST_CASE("Test if unix-time conversion is working") {
         unixTime = 2147483648;
     }
 
-    SECTION("test if unixTime works for times bigger than storable with 32 bit : 19. January 2038, 4:14:09") {
+    SECTION("test if unixTime works for times bigger than storable with 32 bit : 19. January 2038, 3:14:09") {
         nseconds = 0; // not relevant
         seconds = 9;
         minutes = 14;
-        hours = 4;
+        hours = 3;
         days = 19;
         months = 1;
         years = 2038;
@@ -306,9 +307,9 @@ TEST_CASE("Test if unix-time conversion is working") {
         months = 1;
         years = 3000;
         timezone = 0; // not relevant
-        unixTime = 32503680000;
+        unixTime = 32503683600;
     }
-
+/*
     SECTION("test if unixTime works for smallest possible 32 bit time : 13. December 1901, 20:45:52 ") {
         nseconds = 0; // not relevant
         seconds = 52;
@@ -373,3 +374,31 @@ SECTION("test if unixTime works for time before christmas") {
     }
 
  */
+
+TEST_CASE("Test if toUnixTime returns the same time then calculated by the std libraries") {
+    DateTimePP dt;
+
+    SECTION("don't wait") {
+
+    }
+
+    SECTION("wait 1 second") {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    SECTION("wait 1 second") {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    SECTION("wait 1 second") {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    dt.now(true);
+    std::time_t result = std::time(nullptr);
+    std::localtime(&result);
+    long resultLong = result;
+    REQUIRE(dt.toUnixTime() == resultLong);
+
+
+}
