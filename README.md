@@ -25,7 +25,9 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [x] get number of days of month (consider leapYear)
 - [x] get number of days of year (consider leapYear)
 - [x] get number of days between two dates (consider leapYear)
-- [ ] get current time as unix time string
+- [x] get current time as unix time string
+- [x] do standard tests for toUnixTime()
+- [ ] do extended tests for toUnixTime()
 - [ ] throw exceptions if unixTime is not used properly
 - [ ] throw exceptions if values are used that not work in the gregorian calender
 - [ ] throw exceptions if DateTimePP objects don't use the same timezone
