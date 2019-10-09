@@ -252,6 +252,7 @@ int DateTimePP::daysOfYear(int year_) const {
  */
 long DateTimePP::toUnixTime() const {
 
+    long result=0;
     DateTimePP dt1970;
     dt1970.nseconds(0);
     dt1970.seconds(0);
@@ -261,16 +262,22 @@ long DateTimePP::toUnixTime() const {
     dt1970.months(1);
     dt1970.years(1970);
 
-    int daysDiff = numberOfDaysBetweenTwoDates(dt1970,(*this));
+    if ( (dt1970 < (*this)) || (dt1970 == (*this)) ) {
 
-    // add seconds
-    long result = static_cast<long>((*this).seconds());
-    // add minutes
-    result += static_cast<long>((*this).minutes()) * static_cast<long>(60);
-    // add hours
-    result += static_cast<long>((*this).hours()) * static_cast<long>(60) * static_cast<long>(60);
-    // add days
-    result += static_cast<long>(daysDiff) * static_cast<long>(24) * static_cast<long>(60) * static_cast<long>(60);
+        int daysDiff = numberOfDaysBetweenTwoDates(dt1970,(*this));
+
+        // add seconds
+        result = static_cast<long>((*this).seconds());
+        // add minutes
+        result += static_cast<long>((*this).minutes()) * static_cast<long>(60);
+        // add hours
+        result += static_cast<long>((*this).hours()) * static_cast<long>(60) * static_cast<long>(60);
+        // add days
+        result += static_cast<long>(daysDiff) * static_cast<long>(24) * static_cast<long>(60) * static_cast<long>(60);
+
+    } else {
+        throw std::invalid_argument( "Only dates >= 1.1.1970 00:00:00 can be used!" );
+    }
 
     return result;
 }

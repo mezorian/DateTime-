@@ -347,8 +347,8 @@ TEST_CASE("Test if unix-time conversion is working") {
 }
 
 
-/*
 
+/*
 SECTION("test if unixTime works for time before christmas") {
     nseconds = 0; // not relevant
     seconds = 15;

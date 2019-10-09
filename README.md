@@ -28,10 +28,7 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [x] get current time as unix time string
 - [x] do standard tests for toUnixTime()
 - [x] do extended tests for toUnixTime()
-- [ ] throw exceptions if unixTime is not used properly
-- [ ] throw exceptions if values are used that not work in the gregorian calender
-- [ ] throw exceptions if DateTimePP objects don't use the same timezone
-- [ ] document exceptions
+- [x] throw exceptions if unixTime is not used properly
 
 ## v1.1.0 Make class canonical
 - [ ] add copy-constructor
@@ -41,15 +38,23 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [ ] add more testcases to already implemented operators
 - [ ] add comparison operators =~ =~~ =~~~
 
-## v1.2.0 Print to console, time-zone calculations
+## v1.2.0 
+- [ ] throw exceptions if values are used that not work in the gregorian calender
+- [ ] throw exceptions if DateTimePP objects don't use the same timezone
+- [ ] add exceptions to make all functions invalid-parameter-save
+- [ ] add word "Error" to all exceptions
+- [ ] document exceptions
+
+
+## v1.3.0 Print to console, time-zone calculations
 - [ ] output datetime in different formats to string
 - [ ] move DateTimeObjects into new time-zone
 
-## v1.3.0 arithmetics with DateTimePP objects
+## v1.4.0 arithmetics with DateTimePP objects
 - [ ] add or subtract DateTimePP objects
 - [ ] add operators + - += -=
 
-## v1.4.0 weekday / calenderweek calculation
+## v1.5.0 weekday / calenderweek calculation
 - [ ] get calenderweek by date
 - [ ] get weekday by date
 
