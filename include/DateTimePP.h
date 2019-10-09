@@ -1,3 +1,12 @@
+/**
+ * DateTimePP.h
+ * Purpose: defines class DateTimePP
+ *
+ * @author mezorian
+ * @version 1.0.0
+ */
+
+
 #ifndef DATETIMEPP_H
 #define DATETIMEPP_H
 
@@ -5,9 +14,22 @@
 #include <time.h>
 #include <stdexcept>
 
+/**
+ * @brief The DateTimePP class
+ *
+ *     ___      _      _____ _
+ *    /   \__ _| |_ __/__   (_)_ __ ___   ___   _     _
+ *   / /\ / _` | __/ _ \/ /\/ | '_ ` _ \ / _ \_| |_ _| |_
+ *  / /_// (_| | ||  __/ /  | | | | | | |  __/_   _|_   _|
+ * /___,' \__,_|\__\___\/   |_|_| |_| |_|\___| |_|   |_|
+ *
+ * DateTime++ : An easy to use C++ library for date-time calculations
+ *
+ */
 class DateTimePP{
     public:
-        DateTimePP();
+        /* --- constructors / destructors --- */
+        DateTimePP() {};
 
         /* --- getter / setter --- */
         int nseconds() const;
@@ -29,7 +51,7 @@ class DateTimePP{
         DateTimePP date() const;
 
         /* --- get current time --- */
-        void now(bool UTC_ = false);
+        DateTimePP now(bool UTC_ = false);
 
         /* --- get time in different formats --- */
         long toUnixTime() const;
@@ -44,7 +66,7 @@ class DateTimePP{
         bool operator==(const DateTimePP& other_) const;
         bool operator!=(const DateTimePP& other_) const;
         bool operator<(const DateTimePP& other_) const;
-        //VectorData& operator= (const VectorData& other_);
+        //DateTimePP& operator= (const DateTimePP& other_);
 
     private:
         int m_nseconds = 0;
@@ -58,34 +80,3 @@ class DateTimePP{
 };
 
 #endif // DATETIMEPP_H
-
-/**
- * DBInterface::getCurrentDateTime
- * @brief gets current local time and outputs it
- * @return returns current local time as tm struct
- *
-tm getCurrentDateTime(bool cutToHours_) {
-    // create time variable
-    time_t  secondsSince1970;
-    struct tm *result;
-    time ( &secondsSince1970 );
-    result = localtime ( &secondsSince1970 );
-    result->tm_year += 1900;
-    result->tm_mon  += 1;
-    result->tm_isdst = 0;
-    if (cutToHours_) {
-        result->tm_min = 0;
-        result->tm_sec = 0;
-    }
-    return *result;
-}
-
-cout << "Hello World" << endl;
-while (true) {
-    tm time = getCurrentDateTime(false);
-    cout << time.tm_hour << ":" << time.tm_min << ":" << time.tm_sec << endl;
-    cout << time.tm_mday << "." << time.tm_mon << "." << time.tm_year << endl;
-    cout << time.tm_zone << " " << time.tm_gmtoff << endl;
-}
-
-    */

@@ -1,9 +1,13 @@
+/**
+ * DateTimePP.cpp
+ * Purpose: implements class DateTimePP
+ *
+ * @author mezorian
+ * @version 1.0.0
+ */
+
 #include "DateTimePP.h"
 #include <chrono>
-
-DateTimePP::DateTimePP() {
-
-}
 
 /* --- getter / setter --- */
 
@@ -188,17 +192,18 @@ DateTimePP DateTimePP::date() const {
 }
 
 /* --- get current time --- */
-
 /**
  * @brief DateTimePP::now
  * @param UTC if true the current UTC time is used, otherwise the current local time is used
+ * @return returns a DateTimePP object which has the current date time set
  *
  * now() sets the values of your DateTimePP object to the current time.
  * For this, the current local time is used.
  * If you set the parameter UTC to true, now() is not using the current local time but
  * the UTC time instead. The parameter is set to false by default.
+ *
  */
-void DateTimePP::now(bool UTC_) {
+DateTimePP DateTimePP::now(bool UTC_) {
     // create time variable
     time_t  secondsSince1970;
     struct tm *ctime;
@@ -219,6 +224,8 @@ void DateTimePP::now(bool UTC_) {
     months(ctime->tm_mon+1);
     years(ctime->tm_year+1900);
     timezone(ctime->tm_gmtoff);
+
+    return (*this);
 }
 
 /**

@@ -394,11 +394,10 @@ TEST_CASE("Test if toUnixTime returns the same time then calculated by the std l
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
-    dt.now(true);
     std::time_t result = std::time(nullptr);
     std::localtime(&result);
     long resultLong = result;
-    REQUIRE(dt.toUnixTime() == resultLong);
+    REQUIRE(dt.now(true).toUnixTime() == resultLong);
 
 
 }

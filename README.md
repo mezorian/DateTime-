@@ -9,7 +9,7 @@
                                                        
 ```
 
-DateTime++ : A easy to use c++ library for date-time calculations
+DateTime++ : An easy to use C++ library for date-time calculations
 
 [![Build Status](https://travis-ci.org/mezorian/DateTimePP.svg?branch=master)](https://travis-ci.org/mezorian/DateTimePP) 
 [![Coverage Status](https://coveralls.io/repos/github/mezorian/DateTimePP/badge.svg?branch=master)](https://coveralls.io/github/mezorian/DateTimePP?branch=master)
@@ -29,6 +29,8 @@ DateTime++ : A easy to use c++ library for date-time calculations
 - [x] do standard tests for toUnixTime()
 - [x] do extended tests for toUnixTime()
 - [x] throw exceptions if unixTime is not used properly
+- [ ] document every file and every function
+- [ ] do code-review before release
 
 ## v1.1.0 Make class canonical
 - [ ] add copy-constructor
