@@ -29,8 +29,8 @@ DateTime++ : An easy to use C++ library for date-time calculations
 - [x] do standard tests for toUnixTime()
 - [x] do extended tests for toUnixTime()
 - [x] throw exceptions if unixTime is not used properly
-- [ ] document every file and every function
-- [ ] do code-review before release
+- [x] document every file and every function
+- [x] do code-review before release
 
 ## v1.1.0 Make class canonical
 - [ ] add copy-constructor
@@ -45,12 +45,13 @@ DateTime++ : An easy to use C++ library for date-time calculations
 - [ ] throw exceptions if DateTimePP objects don't use the same timezone
 - [ ] add exceptions to make all functions invalid-parameter-save
 - [ ] add word "Error" to all exceptions
+- [ ] check if all functions are tested, e.g. date() is not
 - [ ] document exceptions
-
 
 ## v1.3.0 Print to console, time-zone calculations
 - [ ] output datetime in different formats to string
 - [ ] move DateTimeObjects into new time-zone
+- [ ] add style-guide, license, contribution files...
 
 ## v1.4.0 arithmetics with DateTimePP objects
 - [ ] add or subtract DateTimePP objects

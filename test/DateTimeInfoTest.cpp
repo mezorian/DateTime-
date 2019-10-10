@@ -1,3 +1,11 @@
+/**
+ * DateTimeInfoTest.cpp
+ * Purpose: implements tests for the functions of class DateTimePP which provide information about a date-time
+ *
+ * @author mezorian
+ * @version 1.0.0
+ */
+
 #include "catch.hpp"
 #include "DateTimePP.h"
 

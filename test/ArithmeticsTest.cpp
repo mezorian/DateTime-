@@ -1,7 +1,13 @@
+/**
+ * ArithmeticsTest.cpp
+ * Purpose: implements tests for the arithmetic functions of class DateTimePP
+ *
+ * @author mezorian
+ * @version 1.0.0
+ */
+
 #include "catch.hpp"
 #include "DateTimePP.h"
-
-
 
 TEST_CASE("test if numberOfDaysBetweenTwoDates is returning the correct number of days") {
     DateTimePP dt,dt1,dt2;

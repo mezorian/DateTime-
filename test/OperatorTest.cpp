@@ -1,3 +1,11 @@
+/**
+ * OperatorTest.cpp
+ * Purpose: implements tests for the operators of class DateTimePP
+ *
+ * @author mezorian
+ * @version 1.0.0
+ */
+
 #include "catch.hpp"
 #include "DateTimePP.h"
 

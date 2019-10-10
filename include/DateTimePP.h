@@ -6,7 +6,6 @@
  * @version 1.0.0
  */
 
-
 #ifndef DATETIMEPP_H
 #define DATETIMEPP_H
 

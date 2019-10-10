@@ -23,8 +23,6 @@ int DateTimePP::nseconds() const {
  * @brief DateTimePP::nseconds
  * @param newValue_ new nano-seconds value between 0 - (1e+9 - 1)
  * @return returns the nanoseconds value between 0 - (1e+9 - 1)
- *
- * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::nseconds(int newValue_) {
     m_nseconds = newValue_;
@@ -43,8 +41,6 @@ int DateTimePP::seconds() const {
  * @brief DateTimePP::seconds
  * @param newValue_ new seconds value between 0 - 59
  * @return returns the seconds value between 0 - 59
- *
- * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::seconds(int newValue_) {
     m_seconds = newValue_;
@@ -63,8 +59,6 @@ int DateTimePP::minutes() const {
  * @brief DateTimePP::minutes
  * @param newValue_ new minutes value between 0 - 59
  * @return returns the minutes value between 0 - 59
- *
- * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::minutes(int newValue_) {
     m_minutes = newValue_;
@@ -83,8 +77,6 @@ int DateTimePP::hours() const {
  * @brief DateTimePP::hours
  * @param newValue_ new hours value between 0 - 23
  * @return returns the hours value between 0 - 23
- *
- * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::hours(int newValue_) {
     m_hours = newValue_;
@@ -103,8 +95,6 @@ int DateTimePP::days() const {
  * @brief DateTimePP::days
  * @param newValue_ new days value between 1 - 31
  * @return returns the days value between 1 - 31
- *
- * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::days(int newValue_) {
     m_days = newValue_;
@@ -123,8 +113,6 @@ int DateTimePP::months() const {
  * @brief DateTimePP::months
  * @param newValue_ new months value between 1 - 12
  * @return returns the months value between 1 - 12
- *
- * This function automatically adjust the given parameter to the possible values by using modulo
  */
 int DateTimePP::months(int newValue_) {
     m_months = newValue_;
@@ -141,7 +129,7 @@ int DateTimePP::years() const {
 
 /**
  * @brief DateTimePP::years
- * @param newValue_ new seconds value between INT_MIN - INT_MAX
+ * @param newValue_ new years value between INT_MIN and INT_MAX
  * @return returns the years value between INT_MIN and INT_MAX
  *
  */
@@ -167,329 +155,3 @@ double DateTimePP::timezone(double newValue_) {
     m_timezone = newValue_;
     return timezone();
 }
-
-/**
- * @brief DateTimePP::date
- * @return returns a date-time object which consists only of date variables, time variables are all set to zero
- */
-DateTimePP DateTimePP::date() const {
-    DateTimePP result;
-
-    // set time variables to zero
-    result.nseconds(0);
-    result.seconds(0);
-    result.minutes(0);
-    result.hours(0);
-    result.timezone(0);
-
-    // set date variables to date values of (*this)
-    result.days  ((*this).days()  );
-    result.months((*this).months());
-    result.years ((*this).years() );
-
-    // return result object
-    return result;
-}
-
-/* --- get current time --- */
-/**
- * @brief DateTimePP::now
- * @param UTC if true the current UTC time is used, otherwise the current local time is used
- * @return returns a DateTimePP object which has the current date time set
- *
- * now() sets the values of your DateTimePP object to the current time.
- * For this, the current local time is used.
- * If you set the parameter UTC to true, now() is not using the current local time but
- * the UTC time instead. The parameter is set to false by default.
- *
- */
-DateTimePP DateTimePP::now(bool UTC_) {
-    // create time variable
-    time_t  secondsSince1970;
-    struct tm *ctime;
-    time ( &secondsSince1970 );
-
-    // if UTC_ set object to gmt time, otherwise use local time
-    if (UTC_) {
-        ctime = gmtime ( &secondsSince1970 );
-    } else {
-        ctime = localtime ( &secondsSince1970 );
-    }
-
-    nseconds(0); // not supported yet
-    seconds(ctime->tm_sec);
-    minutes(ctime->tm_min);
-    hours(ctime->tm_hour);
-    days(ctime->tm_mday);
-    months(ctime->tm_mon+1);
-    years(ctime->tm_year+1900);
-    timezone(ctime->tm_gmtoff);
-
-    return (*this);
-}
-
-/**
- * @brief DateTimePP::daysOfYear
- * @param year_ year (>= 1582) of which this function returns the number of days
- * @return returns the number of days of the given year_
- */
-int DateTimePP::daysOfYear(int year_) const {
-    int result;
-
-    if (year_ >= 1582) {
-
-        if (leapYear(year_)) {
-            result = 366;
-        } else {
-            result = 365;
-        }
-
-    } else {
-        throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );
-    }
-
-    return result;
-}
-
-/* --- get time in different formats --- */
-
-/**
- * @brief DateTimePP::unixTime
- * @return returns the date time defined in this object as unixTime / seconds since 1. January 1970 1:00:00 AM
- */
-long DateTimePP::toUnixTime() const {
-
-    long result=0;
-    DateTimePP dt1970;
-    dt1970.nseconds(0);
-    dt1970.seconds(0);
-    dt1970.minutes(0);
-    dt1970.hours(0);
-    dt1970.days(1);
-    dt1970.months(1);
-    dt1970.years(1970);
-
-    if ( (dt1970 < (*this)) || (dt1970 == (*this)) ) {
-
-        int daysDiff = numberOfDaysBetweenTwoDates(dt1970,(*this));
-
-        // add seconds
-        result = static_cast<long>((*this).seconds());
-        // add minutes
-        result += static_cast<long>((*this).minutes()) * static_cast<long>(60);
-        // add hours
-        result += static_cast<long>((*this).hours()) * static_cast<long>(60) * static_cast<long>(60);
-        // add days
-        result += static_cast<long>(daysDiff) * static_cast<long>(24) * static_cast<long>(60) * static_cast<long>(60);
-
-    } else {
-        throw std::invalid_argument( "Only dates >= 1.1.1970 00:00:00 can be used!" );
-    }
-
-    return result;
-}
-
-/* --- get information about dates --- */
-
-/**
- * @brief DateTimePP::daysOfMonth
- * @param month_ month of which the number of days have to be returned
- * @param year_ year (>= 1582) of the month
- * @return returns the number of days the month_ had in the year for years >= 1582. This function also considers leap-years
- */
-int DateTimePP::daysOfMonth(int month_, int year_) const {
-    int numberOfDaysOfMonth = 0;
-
-    if (year_ >= 1582) {
-
-        switch (month_) {
-            case 1  : numberOfDaysOfMonth = 31; break;
-            case 2  : if ( leapYear(year_)) {
-                        numberOfDaysOfMonth = 29;
-                      } else {
-                        numberOfDaysOfMonth = 28;
-                      }; break;
-            case 3  : numberOfDaysOfMonth = 31; break;
-            case 4  : numberOfDaysOfMonth = 30; break;
-            case 5  : numberOfDaysOfMonth = 31; break;
-            case 6  : numberOfDaysOfMonth = 30; break;
-            case 7  : numberOfDaysOfMonth = 31; break;
-            case 8  : numberOfDaysOfMonth = 31; break;
-            case 9  : numberOfDaysOfMonth = 30; break;
-            case 10 : numberOfDaysOfMonth = 31; break;
-            case 11 : numberOfDaysOfMonth = 30; break;
-            case 12 : numberOfDaysOfMonth = 31; break;
-        }
-    } else {
-        throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );
-    }
-    return  numberOfDaysOfMonth;
-}
-
-/**
- * @brief DateTimePP::leapYear
- * @param year_ year (>= 1582) of which you want to know whether it is a leap year or not.
- * @return returns true if year_ is a leap year, otherwise false
- *
- * A leap year is a calendar year containing an additional day added to keep the calendar year
- * synchronized with the astronomical or seasonal year.
- *
- * This function uses the the Gregorian calendar, each leap year has 366 days instead of 365,
- * by extending February to 29 days rather than the common 28.
- * These extra days occur in years which are multiples of four
- * (with the exception of years that can be divided by 100 and which can not be divided by 400).
- *
- * Source Wikipedia:
- * https://en.wikipedia.org/wiki/Leap_year
- *
- * Please note that this function can only be used for years >= 1582.
- * This is because the Gregorian calender is used since this year.
- * For years before this, other leap-year rules have to be used.
- *
- */
-bool DateTimePP::leapYear(int year_) const {
-    bool yearIsLeapYear = false;
-
-    if (year_ >= 1582) {
-        if (year_ % 4 != 0 ) {
-            yearIsLeapYear = false;
-        } else if (year_ % 100 != 0) {
-            yearIsLeapYear = true;
-        } else if (year_ % 400 != 0) {
-            yearIsLeapYear = false;
-        } else {
-            yearIsLeapYear = true;
-        }
-    } else {
-        throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );
-    }
-
-    return yearIsLeapYear;
-}
-
-
-/**
- * @brief DateTimePP::numberOfDaysBetweenTwoDates
- * @param date1_ start-date with year (>= 1582)
- * @param date2_ end-date with year (>= 1582)
- * @return returns the number of days between the two dates
- *
- * This function calculates in full days. The time-stamp and time-zone are not considered.
- * Leap years are considered during calculation.
- * date1_ has to be <= date2_
- *
- * For example :
- *  : numberOfDaysBetweenTwoDates(1.1.2000,1.1.2000) == 0
- *  : numberOfDaysBetweenTwoDates(1.1.2000,2.1.2000) == 1
- *  : numberOfDaysBetweenTwoDates(1.1.2000,10.1.2000) == 9
- */
-int DateTimePP::numberOfDaysBetweenTwoDates(const DateTimePP &date1_, const DateTimePP &date2_) const {
-    DateTimePP result, date1 = date1_, date2 = date2_;
-    int numberOfDays = 0;
-
-    if ( (date1_.years() < 1582) || (date2_.years() < 1582) )  {
-        throw std::invalid_argument( "Only years >= 1582 can be used! This is because the Gregorian calender is used since this year." );
-    }
-
-    if ( (date1_ < date2_) || (date1_ == date2_) ) {
-
-        while (date1.date() < date2.date()) {
-            date1.days(date1.days()+1);
-            numberOfDays++;
-            if ( date1.days() > daysOfMonth(date1.months(),date1.years()) ) {
-                date1.months( date1.months() + 1);
-                date1.days(1);
-            }
-            if ( date1.months() > 12 ) {
-                date1.years( date1.years() + 1);
-                date1.months(1);
-            }
-        }
-
-    } else {
-        throw std::invalid_argument( "Error : date1_ has to be before date2_ . Please switch the order of the parameters." );
-    }
-
-    return numberOfDays;
-}
-
-
-/* --- operators --- */
-
-/**
- * @brief DateTimePP::operator ==
- * @param other_ other DateTimePP object to compare with
- * @return returns true if all member variables of both DateTimePP objects are identical
- */
-bool DateTimePP::operator==(const DateTimePP &other_) const {
-    // check if attributes are identical
-    bool isIdentical = ( ( (*this).nseconds() == other_.nseconds() ) &&
-                         ( (*this).seconds()  == other_.seconds()  ) &&
-                         ( (*this).minutes()  == other_.minutes()  ) &&
-                         ( (*this).hours()    == other_.hours()    ) &&
-                         ( (*this).days()     == other_.days()     ) &&
-                         ( (*this).months()   == other_.months()   ) &&
-                         ( (*this).years()    == other_.years()    ) &&
-                         ( (*this).timezone() == other_.timezone() ) );
-
-    // return result of comparison
-    return isIdentical;
-}
-
-/**
- * @brief DateTimePP::operator !=
- * @param other_ other DateTimePP object to compare with
- * @return returns true if at least one of the member variables of the both DateTime objects are not identical
- */
-bool DateTimePP::operator!=(const DateTimePP &other_) const {
-    // check if identical and return the invers
-    return (!((*this == other_)));
-}
-
-/**
- * @brief DateTimePP::operator <
- * @param other_ other DateTimePP object to compare with
- * @return returns true if (*this) is before other_ . For this comparison all time variables from years downto nseconds are used
- */
-bool DateTimePP::operator<(const DateTimePP &other_) const {
-    bool result=false;
-
-    // check years
-    if ( (*this).years() < other_.years() ) {
-        result = true;
-    } else if ( (*this).years() == other_.years() ) {
-        // check months
-        if ( (*this).months() < other_.months() ) {
-            result = true;
-        } else if ( (*this).months() == other_.months() ) {
-            // check days
-            if ( (*this).days() < other_.days() ) {
-                result = true;
-            } else if ( (*this).days() == other_.days() ) {
-                // check hours
-                if ( (*this).hours() < other_.hours() ) {
-                    result = true;
-                } else if ( (*this).hours() == other_.hours() ) {
-                    // check minutes
-                    if ( (*this).minutes() < other_.minutes() ) {
-                        result = true;
-                    } else if ( (*this).minutes() == other_.minutes() ) {
-                        // check seconds
-                        if ( (*this).seconds() < other_.seconds() ) {
-                            result = true;
-                        } else if ( (*this).seconds() == other_.seconds() ) {
-                            // check nseconds
-                            if ( (*this).nseconds() < other_.nseconds() ) {
-                                result = true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // return result value
-    return result;
-}
-

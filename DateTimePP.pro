@@ -18,10 +18,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         src/DateTimePP.cpp \
+        src/DateTimePPArithmetics.cpp \
+        src/DateTimePPCurrentTime.cpp \
+        src/DateTimePPDateTimeInfo.cpp \
+        src/DateTimePPGeneralMisc.cpp \
+        src/DateTimePPOperator.cpp \
+        src/DateTimePPUnixTime.cpp \
         test/ArithmeticsTest.cpp \
         test/CurrentTimeTest.cpp \
         test/DateTimeInfoTest.cpp \
-        test/GeneralTest.cpp \
+        test/DateTimePPTest.cpp \
+        test/GeneralMiscTest.cpp \
         test/OperatorTest.cpp \
         test/UnixTimeTest.cpp
 

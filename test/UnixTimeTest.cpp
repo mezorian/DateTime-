@@ -1,3 +1,11 @@
+/**
+ * UnixTimeTest.cpp
+ * Purpose: implements tests for the functions of class DateTimePP which convert a DateTimePP object into a unix time number
+ *
+ * @author mezorian
+ * @version 1.0.0
+ */
+
 #include "catch.hpp"
 #include "DateTimePP.h"
 #include <chrono>
@@ -398,6 +406,5 @@ TEST_CASE("Test if toUnixTime returns the same time then calculated by the std l
     std::localtime(&result);
     long resultLong = result;
     REQUIRE(dt.now(true).toUnixTime() == resultLong);
-
 
 }

@@ -1,3 +1,11 @@
+/**
+ * DateTimePPTest.cpp
+ * Purpose: implements tests for getter / setter / constructors / destructors of class DateTimePP
+ *
+ * @author mezorian
+ * @version 1.0.0
+ */
+
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "DateTimePP.h"
@@ -41,7 +49,6 @@ TEST_CASE("Test if get returns the previously set value") {
         years = 2000;
         timezone = 1.5;
     }
-
 
     SECTION("test if get and set works for time before christmas") {
         nseconds = 234234;
