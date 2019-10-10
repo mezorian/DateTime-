@@ -73,4 +73,3 @@ DateTime++ : An easy to use C++ library for date-time calculations
 
 ## v3.0.0
 - [ ] support nseconds in time
-
