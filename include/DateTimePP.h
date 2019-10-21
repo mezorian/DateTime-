@@ -57,6 +57,8 @@ class DateTimePP{
         /* --- get time in different formats --- */
         long toUnixTime() const;
         std::string toString(bool inUnixTime_ = false) const;
+        DateTimePP fromString(const std::string &dateTimeString_);
+        std::string deletePaddingZeros(const std::string &stringWithPaddingZeros_);
 
         /* --- get information about dates --- */
         int daysOfYear(int year_) const;

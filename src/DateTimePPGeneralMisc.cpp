@@ -87,3 +87,79 @@ std::string DateTimePP::toString(bool inUnixTime_) const {
 
 }
 
+
+/**
+ * DateTimePP::fromString
+ * @brief parse formatted date-time-string to DateTimePP object
+ * @param dateTimeString_ formatted date-time-string
+ * @return returns a DateTimePP object which contains the datetime of dateTimeString_
+ *
+ * converts a date-time-string which MUST be formatted like :
+ * yyyy-mm-ddThh:mm:ssZ
+ * see the following example on how the string has to be formatted :
+ * 2016-08-09T16:40:57Z
+ *
+ * NOTICE : only the tm-fields tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec are supported
+ *          the other fields are ALWAYS initialized empty :
+ */
+DateTimePP DateTimePP::fromString(const std::string& dateTimeString_) {
+
+    DateTimePP result;
+    std::stringstream temp;
+    std::string substring;
+
+    // parse year
+    substring = dateTimeString_.substr(0,4);
+    result.years(stoi(substring));
+    // parse month
+    substring = dateTimeString_.substr(5,2);
+    substring = deletePaddingZeros(substring);
+    result.months(stoi(substring));
+    // parse day
+    substring = dateTimeString_.substr(8,2);
+    substring = deletePaddingZeros(substring);
+    result.days(stoi(substring));
+    // parse hour
+    substring = dateTimeString_.substr(11,2);
+    substring = deletePaddingZeros(substring);
+    result.hours(stoi(substring));
+    // parse minutes
+    substring = dateTimeString_.substr(14,2);
+    substring = deletePaddingZeros(substring);
+    result.minutes(stoi(substring));
+    // parse seconds
+    substring = dateTimeString_.substr(17,2);
+    substring = deletePaddingZeros(substring);
+    result.seconds(stoi(substring));
+
+    (*this) = result;
+
+    return result;
+
+}
+
+/**
+ * DateTimePP::deletePaddingZeros
+ * @brief removes leading padding zeros from a given string
+ * @param stringWithPaddingZeros_ string with padding zeros
+ * @return return stringWithPaddingZeros_ without padding zeros
+ *
+ * NOTICE : if stringWithPaddingZeros_ consists of only zeros
+ *          the function returns "0"
+ */
+std::string DateTimePP::deletePaddingZeros(const std::string &stringWithPaddingZeros_) {
+
+    std::string result = stringWithPaddingZeros_;
+
+    // erase leading zeros
+    result.erase(0, result.find_first_not_of('0'));
+
+    // if every char was a zero
+    // return only one zero
+    if (result == "") {
+        result = "0";
+    }
+
+    return result;
+}
+
