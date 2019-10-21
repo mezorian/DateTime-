@@ -32,7 +32,13 @@ DateTime++ : An easy to use C++ library for date-time calculations
 - [x] document every file and every function
 - [x] do code-review before release
 
-## v1.1.0 Make class canonical
+## v1.1.0 add toString, fromString functions
+- [x] add toString function that can write out the date-time values as a formatted string
+- [x] add fromString function that can read the date-time values from a formatted string
+- [x] add function deletePaddingZeros()
+
+## v1.2.0 Make class canonical
+- [ ] add test-cases for new functions of v1.1.0
 - [ ] add copy-constructor
 - [ ] add standard constructor
 - [ ] add assignment operator = 
@@ -40,7 +46,7 @@ DateTime++ : An easy to use C++ library for date-time calculations
 - [ ] add more testcases to already implemented operators
 - [ ] add comparison operators =~ =~~ =~~~
 
-## v1.2.0 
+## v1.3.0 
 - [ ] throw exceptions if values are used that not work in the gregorian calender
 - [ ] throw exceptions if DateTimePP objects don't use the same timezone
 - [ ] add exceptions to make all functions invalid-parameter-save
@@ -48,16 +54,15 @@ DateTime++ : An easy to use C++ library for date-time calculations
 - [ ] check if all functions are tested, e.g. date() is not
 - [ ] document exceptions
 
-## v1.3.0 Print to console, time-zone calculations
-- [ ] output datetime in different formats to string
+## v1.4.0 time-zone calculations
 - [ ] move DateTimeObjects into new time-zone
 - [ ] add style-guide, license, contribution files...
 
-## v1.4.0 arithmetics with DateTimePP objects
+## v1.5.0 arithmetics with DateTimePP objects
 - [ ] add or subtract DateTimePP objects
 - [ ] add operators + - += -=
 
-## v1.5.0 weekday / calenderweek calculation
+## v1.6.0 weekday / calenderweek calculation
 - [ ] get calenderweek by date
 - [ ] get weekday by date
 
