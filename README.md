@@ -32,6 +32,11 @@ DateTime++ : An easy to use C++ library for date-time calculations
 - [x] document every file and every function
 - [x] do code-review before release
 
+## v1.0.1 Add missing functions to make DateTimePP work in DBInterface
+- [x] add function toString()
+- [x] add function fromString()
+- [x] add function deletePaddingZeros()
+
 ## v1.1.0 add toString, fromString functions
 - [ ] add toString function that can write out the date-time values as a formatted string
 - [ ] add fromString function that can read the date-time values from a formatted string
