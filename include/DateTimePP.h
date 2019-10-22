@@ -10,6 +10,8 @@
 #define DATETIMEPP_H
 
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 #include <time.h>
 #include <stdexcept>
 
@@ -54,6 +56,9 @@ class DateTimePP{
 
         /* --- get time in different formats --- */
         long toUnixTime() const;
+        std::string toString(bool inUnixTime_ = false) const;
+        DateTimePP fromString(const std::string &dateTimeString_);
+        std::string deletePaddingZeros(const std::string &stringWithPaddingZeros_);
 
         /* --- get information about dates --- */
         int daysOfYear(int year_) const;
@@ -72,8 +77,8 @@ class DateTimePP{
         int m_seconds  = 0;
         int m_minutes  = 0;
         int m_hours    = 0;
-        int m_days     = 1;
-        int m_months   = 1;
+        int m_days     = 0;
+        int m_months   = 0;
         int m_years    = 0;
         double m_timezone = 0.0;
 };

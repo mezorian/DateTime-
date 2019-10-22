@@ -10,15 +10,14 @@
 #include "catch.hpp"
 #include "DateTimePP.h"
 
-TEST_CASE("Test if DatetimePP points to 01.01.00 0:0:0") {
+TEST_CASE("Test if DatetimePP points to 00.00.00 00:00:00:00000000") {
     DateTimePP dt;
     REQUIRE(dt.nseconds()  == 0);
     REQUIRE(dt.seconds()   == 0);
-    REQUIRE(dt.seconds()   == 0);
     REQUIRE(dt.minutes()   == 0);
     REQUIRE(dt.hours()     == 0);
-    REQUIRE(dt.days()      == 1);
-    REQUIRE(dt.months()    == 1);
+    REQUIRE(dt.days()      == 0);
+    REQUIRE(dt.months()    == 0);
     REQUIRE(dt.years()     == 0);
     REQUIRE(dt.timezone()  == 0.0);
 }
